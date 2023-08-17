@@ -9,10 +9,12 @@ Currently, two official plugins are available:
 
 - TODO:
 -   SERVER PART
+-       USER_ACCESS endpoints
 -       ROUTES
 -       (PGSQL)
 -       SELF-INSTALLATION(probably)
 -   CLIENT PART
+-       ADMINISTRATION
 -       ATHENTICATION
 -       TODO MANAGER
 -       PSYCHOLOGICAL MANAGER 
