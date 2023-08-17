@@ -1,12 +1,21 @@
-import { useState } from 'react';
-import './App.css';
+import Auth from "./components/Auth/Auth";
 
 function App() {
-  return (
-    <>
 
-    </>
-  )
+  const authToken = false;
+
+  return (
+    <div className="app-container">
+      {authToken &&
+        <>
+          authorized!
+        </>}
+      {!authToken &&
+        <Auth />
+      }
+
+    </div>
+  );
 }
 
 export default App
