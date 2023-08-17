@@ -17,3 +17,4 @@ Currently, two official plugins are available:
 -       TODO MANAGER
 -       PSYCHOLOGICAL MANAGER 
 -       *DYNAMIC GRAPHICS
+-   EVERYTHING'S COVERED WITH TESTS
