@@ -10,17 +10,19 @@ const Auth = () => {
     console.log(isLogIn, email, password, confirmPassword);
 
     const handleSubmit = async (e, endpoint) => {
-        // e.preventDefault();
         if (!isLogIn && password !== confirmPassword) {
             setError("passwords don't match");
             console.log("passwords don't match")
             return;
         }
-        console.log('http://localhost:8000/' + endpoint);
+        console.log(endpoint, email, password);
         const response = await fetch(`http://localhost:8000/${endpoint}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({
+                'email': email,
+                'password': password
+            })
         });
     }
 
@@ -47,7 +49,7 @@ const Auth = () => {
                         autoComplete="off"
                         placeholder='confirm password' />}
                     <p>{error}</p>
-                    <input className="input__submit" type="submit" onClick={async (e) => { handleSubmit(e, isLogIn ? 'login' : 'signup') }} />
+                    <input className="input__submit" type="submit" onClick={async (e) => { handleSubmit(e, isLogIn ? 'signin' : 'signup') }} />
                 </form>
             </div>
             <div className='auth-options'>

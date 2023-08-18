@@ -7,6 +7,8 @@ const db = require('./db');
 
 const app = express();
 app.use(cors());
+app.use(express.json());
+
 //get main
 // app.get('/', (req, res) =>{
 //     const body_data = req.body   
@@ -17,9 +19,12 @@ app.use(cors());
 //signup
 app.post('/signup', async (req, res) => {
     const { email, password } = req.body;
-    // console.log("signup", req);
-    // console.log();
-    console.log("signup :", email, password);
+    console.log("signup", email, password);
+});
+
+app.post('/signin', async (req, res) => {
+    const { email, password } = req.body;
+    console.log("login", email, password);
 });
 
 app.listen(PORT, () => console.log(`SERVING: http://localhost:${PORT}`));
