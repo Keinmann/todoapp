@@ -7,21 +7,28 @@ const Auth = () => {
     const [confirmPassword, setConfirmPassword] = useState(null);
     const [error, setError] = useState(null);
 
-    console.log(email, password, confirmPassword);
+    console.log(isLogIn, email, password, confirmPassword);
 
-    const handleSubmit = async (endpoint) => {
+    const handleSubmit = async (e, endpoint) => {
+        // e.preventDefault();
         if (!isLogIn && password !== confirmPassword) {
-            await setError("passwords don't match");
+            setError("passwords don't match");
+            console.log("passwords don't match")
             return;
         }
-        console.log(endpoint);
+        console.log('http://localhost:8000/' + endpoint);
+        const response = await fetch(`http://localhost:8000/${endpoint}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
     }
 
     return (
         <div className="auth-container">
             <div className='auth-container-box'>
                 <h1>
-                    {isLogIn ? 'Log in' : 'Sign up'}
+                    Sign {isLogIn ? 'in' : 'up'}
                 </h1>
                 <form>
                     <input
@@ -40,7 +47,7 @@ const Auth = () => {
                         autoComplete="off"
                         placeholder='confirm password' />}
                     <p>{error}</p>
-                    <input className="input__submit" type="submit" onSubmit={() => { handleSubmit(isLogIn ? 'login' : 'signup') }} />
+                    <input className="input__submit" type="submit" onClick={async (e) => { handleSubmit(e, isLogIn ? 'login' : 'signup') }} />
                 </form>
             </div>
             <div className='auth-options'>
