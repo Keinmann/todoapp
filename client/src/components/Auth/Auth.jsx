@@ -15,11 +15,15 @@ const Auth = () => {
             console.log("passwords don't match")
             return;
         }
+        if (isLogIn && password.length < 3) {
+            return;
+        }
         console.log(endpoint, email, password);
-        const response = await fetch(`http://localhost:8000/${endpoint}`, {
+        const response = await fetch(`http://localhost:8000/auth`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
+                'endpoint': endpoint,
                 'email': email,
                 'password': password
             })
