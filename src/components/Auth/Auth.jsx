@@ -7,14 +7,12 @@ const Auth = () => {
     const [confirmPassword, setConfirmPassword] = useState(null);
     const [error, setError] = useState(null);
 
-    console.log(email, password, confirmPassword);
-
-    const handleSubmit = async (endpoint) => {
+    const handleSubmit = async () => {
         if (!isLogIn && password !== confirmPassword) {
             await setError("passwords don't match");
             return;
         }
-        console.log(endpoint);
+
     }
 
     return (
@@ -40,7 +38,7 @@ const Auth = () => {
                         autoComplete="off"
                         placeholder='confirm password' />}
                     <p>{error}</p>
-                    <input className="input__submit" type="submit" onSubmit={() => { handleSubmit(isLogIn ? 'login' : 'signup') }} />
+                    <input className="input__submit" type="submit" onSubmit={handleSubmit} />
                 </form>
             </div>
             <div className='auth-options'>
@@ -49,8 +47,7 @@ const Auth = () => {
                     style={{
                         backgroundColor: isLogIn ? 'rgb(255, 255, 255)' : 'rgb(245, 245, 245)',
                         boxShadow: isLogIn ? 'none' : 'inset -8px 8px 12px -3px rgb(220, 220, 220)',
-                        color: isLogIn ? 'rgb(100, 100, 100)' : 'rgb( 50, 50, 50 )',
-                        fontSize: isLogIn ? '14px' : '12px'
+                        color: isLogIn ? 'rgb(100, 100, 100)' : 'rgb( 50, 50, 50 )'
                     }}
                 >Login</button>
                 <button
@@ -58,8 +55,7 @@ const Auth = () => {
                     style={{
                         backgroundColor: !isLogIn ? 'rgb(255, 255, 255)' : 'rgb(245, 245, 245)',
                         boxShadow: !isLogIn ? 'none' : 'inset 8px 8px 12px -3px rgb(220, 220, 220)',
-                        color: !isLogIn ? 'rgb(100, 100, 100)' : 'rgb( 50, 50, 50 )',
-                        fontSize: !isLogIn ? '14px' : '12px'
+                        color: !isLogIn ? 'rgb(100, 100, 100)' : 'rgb( 50, 50, 50 )'
                     }}
                 >Sign up</button>
             </div>
