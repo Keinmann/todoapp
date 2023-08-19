@@ -12,7 +12,6 @@ const Auth = () => {
     const handleSubmit = async (e, endpoint) => {
         if (!isLogIn && password !== confirmPassword) {
             setError("passwords don't match");
-            console.log("passwords don't match")
             return;
         }
         if (isLogIn && password.length < 3) {
