@@ -10,6 +10,7 @@ function App() {
       {cookies['AuthToken'] &&
         <>
           authorized!
+          {cookies['Email']}
         </>}
       {!cookies['AuthToken'] &&
         <Auth />

@@ -19,7 +19,7 @@ const Auth = () => {
         if (isLogIn && password.length < 3) {
             return;
         }
-        fetch(`http://localhost:8000/auth`, {
+        const response = await fetch(`http://localhost:8000/auth`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -27,18 +27,17 @@ const Auth = () => {
                 'email': email,
                 'password': password
             })
-        }).then(async (response) => {
-            console.log(response);
-            const data = await response.json();
-            console.log(data);
-            if (data.detail) {
-                setError(data.detail);
-            } else {
-                setCookie('Email', data.email, { 'maxAge': 40 });
-                setCookie('AuthToken', data.token, { 'maxAge': 40 });
-            }
         });
-
+        console.log(response);
+        const data = await response.json();
+        console.log(data);
+        if (data.detail) {
+            setError(data.detail);
+        } else {
+            setCookie('Email', data.email, { 'maxAge': 10 });
+            setCookie('AuthToken', data.token, { 'maxAge': 10 });
+            window.location.reload();
+        }
     }
 
     return (

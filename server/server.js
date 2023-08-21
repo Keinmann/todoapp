@@ -52,6 +52,7 @@ app.post('/auth', async (req, res) => {
             console.log(signUp);
         } catch (error) {
             console.log(error);
+            res.json({ 'detail': 'error' });
         }
     }
     if (endpoint === 'signin') {
@@ -60,7 +61,11 @@ app.post('/auth', async (req, res) => {
             const comparison = await bcrypt.compareSync(password, signIn.rows[0].hashed_password);
             console.log("comparison", comparison);
             const token = jwt.sign({ email }, 'secret', { expiresIn: '1hr' });
-            res.json({ email, token });
+            if (comparison) {
+                res.json({ email, token });
+            } else {
+                res.json({ 'detail': 'wrong password' });
+            }
         } catch (error) {
             console.log(error);
         }
