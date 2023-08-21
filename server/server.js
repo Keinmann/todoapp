@@ -16,10 +16,10 @@ app.use(express.json());
 //     res.send("SERVER MAIN");
 // });
 
-//signup
+//register
 app.post('auth/signup', async (req, res) => {
     const { email, password } = req.body;
-    console.log("signup", email, password);
+    console.log("register", email, password);
     try {
         const signUp = await db.query('INSERT INTO users(email, hashed_password) VALUES($1, $2)', [email, hashedPassword]);
         console.log(signUp);
@@ -28,6 +28,7 @@ app.post('auth/signup', async (req, res) => {
     }
 });
 
+//login
 app.post('auth/signin', async (req, res) => {
     const { email, password } = req.body;
     console.log("login", email, password);
@@ -43,7 +44,6 @@ app.post('auth/signin', async (req, res) => {
 
 app.post('/auth', async (req, res) => {
     const { endpoint, email, password } = req.body;
-    console.log(endpoint, email, password);
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
     if (endpoint === 'signup') {
@@ -55,12 +55,12 @@ app.post('/auth', async (req, res) => {
         }
     }
     if (endpoint === 'signin') {
-        console.log('signin');
         try {
             const signIn = await db.query('SELECT hashed_password FROM users WHERE email = $1', [email]);
-            console.log(signIn.rows[0]);
             const comparison = await bcrypt.compareSync(password, signIn.rows[0].hashed_password);
             console.log("comparison", comparison);
+            const token = jwt.sign({ email }, 'secret', { expiresIn: '1hr' });
+            res.json({ email, token });
         } catch (error) {
             console.log(error);
         }
