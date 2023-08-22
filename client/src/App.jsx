@@ -1,6 +1,8 @@
-import React from "react";
 import Auth from "./components/Auth/Auth";
 import { useCookies } from 'react-cookie';
+
+import MainMenu from "./components/MainMenu/MainMenu";
+
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(null);
@@ -8,10 +10,7 @@ function App() {
   return (
     <div className="app-container">
       {cookies['AuthToken'] &&
-        <>
-          authorized!
-          {cookies['Email']}
-        </>}
+        <MainMenu />}
       {!cookies['AuthToken'] &&
         <Auth />
       }

@@ -10,6 +10,11 @@ const Auth = () => {
     const [error, setError] = useState(null);
     const [authToken, setAuthToken] = useState(null);
 
+    const setMode = (status) => {
+        setIsLogIn(status);
+        setError(null);
+    }
+
     const handleSubmit = async (event, endpoint) => {
         event.preventDefault();
         if (!isLogIn && password !== confirmPassword) {
@@ -34,8 +39,8 @@ const Auth = () => {
         if (data.detail) {
             setError(data.detail);
         } else {
-            setCookie('Email', data.email, { 'maxAge': 10 });
-            setCookie('AuthToken', data.token, { 'maxAge': 10 });
+            setCookie('Email', data.email, { 'maxAge': 600 });
+            setCookie('AuthToken', data.token, { 'maxAge': 600 });
             window.location.reload();
         }
     }
@@ -53,12 +58,13 @@ const Auth = () => {
                         autoComplete="on"
                         placeholder='email' />
                     <input
-                        onChange={async (object) => { await setPassword(object.target.value); }}
+                        className='auth-input'
+                        onChange={async (object) => { setPassword(object.target.value); }}
                         type="password"
                         autoComplete="off"
                         placeholder='password' />
                     {!isLogIn && <input
-                        onChange={async (object) => { await setConfirmPassword(object.target.value); }}
+                        onChange={async (object) => { setConfirmPassword(object.target.value); }}
                         type="password"
                         autoComplete="off"
                         placeholder='confirm password' />}
@@ -69,7 +75,8 @@ const Auth = () => {
             <p>{error}</p>
             <div className='auth-options'>
                 <button
-                    onClick={() => { setIsLogIn(true) }}
+                    className='auth-button'
+                    onClick={() => { setMode(true) }}
                     style={{
                         backgroundColor: isLogIn ? 'rgb(255, 255, 255)' : 'rgba(10, 10, 10, 0.01)',
                         boxShadow: isLogIn ? 'none' : 'inset -8px 8px 12px -3px rgb(220, 220, 220)',
@@ -78,7 +85,8 @@ const Auth = () => {
                     }}
                 >Login</button>
                 <button
-                    onClick={() => { setIsLogIn(false) }}
+                    className='auth-button'
+                    onClick={() => { setMode(false) }}
                     style={{
                         backgroundColor: !isLogIn ? 'rgb(255, 255, 255)' : 'rgba(10, 10, 10, 0.01)',
                         boxShadow: !isLogIn ? 'none' : 'inset 8px 8px 12px -3px rgb(220, 220, 220)',

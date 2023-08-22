@@ -1,5 +1,5 @@
 
-button {
+.auth-button {
     width: 50%;
     border: none;
     height: 30px;
@@ -34,3 +34,18 @@ button {
     padding: 4px;  
 }
 
+.auth-input {
+    border-radius: 6px;
+    font-size: 24px;
+    border: 1px solid rgb(218, 218, 218);
+    width: 90%;
+    margin: 8px auto;
+    padding: 4px 4px ;
+    text-align: center;
+    transition: border 0.1s ease-in-out;
+}
+
+.auth-input:focus {
+    border: 1px solid rgb(139, 139, 139);
+    outline: none;
+}
