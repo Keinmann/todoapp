@@ -1,12 +1,37 @@
+html,body {
+    height: 100%;
+}
+
 body {
+    display: block;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     margin : 0;
+    /* background: url('./assets/background-canvas.png') no-repeat rgba(255, 255, 255, 0.01); */
+    background: url('./assets/space-dark-matter-blue-black-wallpaper.png') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    animation: mist 400s infinite linear;
+    background-repeat: round;
 }
 
 h1 {
-    color : rgb(80, 80, 80);
+    color: rgb(150, 150, 150);
     margin: 10px auto;
     transition : all 0.2s ease-in-out
 }
 
+.app-container {
+    height: 100%;
+}
 
+@keyframes mist {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: -100vw 0;
+    }
+}

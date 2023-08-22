@@ -1,0 +1,38 @@
+.menu-container {   
+    position: sticky;
+    top: 0px;
+    display: flex;
+    margin: 0px auto 0 auto;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 27px;
+    color: rgb(150, 150, 150);
+    text-transform: uppercase;
+    
+}
+.menu-option {
+    font-weight: 600;
+    margin: 0 1px;
+    border: 1px solid rgba(218, 218, 218, 0.5);
+    width: 150px;
+    height: 40px;
+    background-color: rgba(130, 130, 130, 0.1);
+    color:inherit;
+    text-transform: inherit;
+    transition: color 0.4s ease-in-out;
+    transition: border-color 0.4s ease-in-out;
+}
+.menu-option:hover{
+    border: 1px solid rgba(218, 218, 218, 0.9);
+    outline: none;
+}
+
+.menu-logo{
+    height: 40px;
+    width: 40px;
+    background-color: red;
+}
+
+.logout{
+    width: 80px;
+}

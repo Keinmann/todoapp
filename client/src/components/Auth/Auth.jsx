@@ -53,6 +53,7 @@ const Auth = () => {
                 </h1>
                 <form>
                     <input
+                        className='auth-input'
                         onChange={(object) => { setEmail(object.target.value); }}
                         type="email"
                         autoComplete="on"
@@ -64,12 +65,13 @@ const Auth = () => {
                         autoComplete="off"
                         placeholder='password' />
                     {!isLogIn && <input
+                        className='auth-input'
                         onChange={async (object) => { setConfirmPassword(object.target.value); }}
                         type="password"
                         autoComplete="off"
                         placeholder='confirm password' />}
 
-                    <input className="input__submit" type="submit" onClick={async (e) => { handleSubmit(e, isLogIn ? 'signin' : 'signup') }} />
+                    <input className="input-submit" type="submit" onClick={async (e) => { handleSubmit(e, isLogIn ? 'signin' : 'signup') }} />
                 </form>
             </div>
             <p>{error}</p>
@@ -78,9 +80,9 @@ const Auth = () => {
                     className='auth-button'
                     onClick={() => { setMode(true) }}
                     style={{
-                        backgroundColor: isLogIn ? 'rgb(255, 255, 255)' : 'rgba(10, 10, 10, 0.01)',
-                        boxShadow: isLogIn ? 'none' : 'inset -8px 8px 12px -3px rgb(220, 220, 220)',
-                        color: isLogIn ? 'rgb(100, 100, 100)' : 'rgb( 50, 50, 50 )',
+                        backgroundColor: isLogIn ? 'rgba(255, 255, 255, 0)' : 'rgba(10, 10, 10, 0.5)',
+                        // boxShadow: isLogIn ? 'none' : 'inset -8px 8px 12px -3px rgb(220, 220, 220)',
+                        color: isLogIn ? 'rgb(150, 150, 150)' : 'rgb( 71,71,71 )',
                         fontSize: isLogIn ? '14px' : '13px'
                     }}
                 >Login</button>
@@ -88,9 +90,9 @@ const Auth = () => {
                     className='auth-button'
                     onClick={() => { setMode(false) }}
                     style={{
-                        backgroundColor: !isLogIn ? 'rgb(255, 255, 255)' : 'rgba(10, 10, 10, 0.01)',
-                        boxShadow: !isLogIn ? 'none' : 'inset 8px 8px 12px -3px rgb(220, 220, 220)',
-                        color: !isLogIn ? 'rgb(100, 100, 100)' : 'rgb( 50, 50, 50 )',
+                        backgroundColor: !isLogIn ? 'rgba(255, 255, 255, 0)' : 'rgba(10, 10, 10, 0.5)',
+                        // boxShadow: !isLogIn ? 'none' : 'inset 8px 8px 12px -3px rgb(220, 220, 220)',
+                        color: !isLogIn ? 'rgb(150, 150, 150)' : 'rgb( 71,71,71 )',
                         fontSize: !isLogIn ? '14px' : '13px'
                     }}
                 >Register</button>

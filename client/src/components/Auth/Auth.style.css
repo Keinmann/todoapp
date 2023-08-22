@@ -1,15 +1,8 @@
 
-.auth-button {
-    width: 50%;
-    border: none;
-    height: 30px;
-    transition: background-color 0.3s ease-in-out;
-    transition: box-shadow 0.3s ease-in-out;
-    transition: color 0.2s ease-in-out;
-    transition: font-size 0.01s ease-in-out;
-}
-
 .auth-container {
+    color: rgb(150, 150, 150);
+    background-color: rgba(130, 130, 130, 0.08);
+    filter: blur(100);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -18,7 +11,8 @@
     text-align: center;
     width: 500px;
     margin: 5% auto;
-    box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 0 0 1px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 6px 24px, rgba(0, 0, 0, 0.2) 0 0 0 1px;
+    filter: blur(50);
 }
 
 .auth-container-box{
@@ -26,26 +20,48 @@
     flex-wrap:wrap;
 }
 
-.input__submit {
-    color: rgb(100, 100, 100);
+.input-submit {
+    color: rgb(150, 150, 150);
+    border: 1px solid rgb(71, 71, 71);
+    outline: none;
     font-size: 20px;
     width: 30%;
     margin: 10px 0px; 
     padding: 4px;  
+    transition: border 0.1s ease-in-out;
+    background-color: rgba(200, 200, 200, 0.1);
+}
+
+.input-submit:hover{
+    border: 1px solid rgb(150, 150, 150);
+    outline: none;
 }
 
 .auth-input {
+    color: rgb(150, 150, 150);
     border-radius: 6px;
     font-size: 24px;
-    border: 1px solid rgb(218, 218, 218);
+    border: 1px solid rgba(218, 218, 218, 0.5);
     width: 90%;
     margin: 8px auto;
     padding: 4px 4px ;
     text-align: center;
     transition: border 0.1s ease-in-out;
+    background-color: rgba(5,5,5,0.05);
 }
 
 .auth-input:focus {
     border: 1px solid rgb(139, 139, 139);
     outline: none;
+}
+
+.auth-button {
+    font-weight: 600;
+    width: 50%;
+    border: none;
+    height: 30px;
+    transition: background-color 0.3s ease-in-out;
+    transition: box-shadow 0.3s ease-in-out;
+    transition: color 0.2s ease-in-out;
+    transition: font-size 0.01s ease-in-out;
 }
