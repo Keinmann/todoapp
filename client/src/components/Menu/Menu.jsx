@@ -1,7 +1,7 @@
 import './Menu.style.css';
 import { useCookies } from 'react-cookie';
 
-const Menu = () => {
+const Menu = ({ setShowPlans }) => {
 
     const [cookies, setCookie, removeCookie] = useCookies(null);
 
