@@ -9,13 +9,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-//get main
-// app.get('/', (req, res) =>{
-//     const body_data = req.body   
-//     res.json(data);
-//     res.send("SERVER MAIN");
-// });
-
+app.get('/plans/:userEmail', async (req, res) => {
+    const userEmail = req.params.userEmail;
+    try {
+        const plans = await db.query('SELECT * FROM plans WHERE user_email = $1', [userEmail]);
+        res.json(plans.rows);
+    } catch (error) {
+        console.log(error);
+        res.json(error.detail);
+    }
+});
 
 //login & register
 app.post('/auth', async (req, res) => {

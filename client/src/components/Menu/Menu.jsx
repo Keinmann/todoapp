@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './Menu.style.css';
 import { useCookies } from 'react-cookie';
-// setShowPlans={setShowPlans} showDreams={setShowDreams} setShowNotes={setShowNotes} setShowStarMap={setShowStarMap}
+
 Menu.propTypes = {
     setShowPlans: PropTypes.func,
     setShowDreams: PropTypes.func,
