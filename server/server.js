@@ -24,7 +24,6 @@ app.post('/auth', async (req, res) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
     console.log(endpoint);
     if (endpoint === 'signup') {
-
         try {
             const signUp = await db.query('INSERT INTO users(email, hashed_password) VALUES($1, $2)', [email, hashedPassword]);
             console.log(signUp);
@@ -32,10 +31,18 @@ app.post('/auth', async (req, res) => {
             res.json({ email, token });
         } catch (error) {
             console.log(error);
+            if (error.code === '23505') {
+                res.json({ 'detail': 'email already in use' });
+                return;
+            }
             res.json({ 'detail': error.detail });
         }
     }
     if (endpoint === 'signin') {
+        if (password.length < 1 || email.length < 1) {
+            res.json({ 'detail': 'fields must be filled' });
+            return;
+        }
         try {
             const signIn = await db.query('SELECT hashed_password FROM users WHERE email = $1', [email]);
             const comparison = await bcrypt.compareSync(password, signIn.rows[0].hashed_password);

@@ -2,11 +2,6 @@ html,body {
     height: 100%;
 }
 
-body:before{
-    display: block;
-    background: 100% 100% rgba(10, 10, 10, 1);
-}
-
 body {
     display: block;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -18,12 +13,13 @@ body {
     -o-background-size: cover;
     background-size: cover;
     overflow: hidden;
-    animation: mist 600s infinite linear;
+    animation: mist 200s infinite linear;
     background-repeat: round;
 }
 
 h1 {
     color: rgb(150, 150, 150);
+    font-size: 24px;
     margin: 10px auto;
     transition : all 0.2s ease-in-out
 }

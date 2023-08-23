@@ -14,7 +14,6 @@ const Menu = () => {
     return (
         <div className='menu-container'>
             <div className='menu-logo'>
-
             </div>
             <div className='menu-button-box'>
                 <button className='menu-option'>

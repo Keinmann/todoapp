@@ -17,12 +17,24 @@ const Auth = () => {
 
     const handleSubmit = async (event, endpoint) => {
         event.preventDefault();
-        if (!isLogIn && password !== confirmPassword) {
-            setError("passwords don't match");
-            return;
-        }
-        if (isLogIn && password.length < 3) {
-            return;
+        if (isLogIn) {
+            if (!password || !email) {
+                setError("fields can't be empty");
+                return;
+            }
+        } else {
+            if (!email) {
+                setError("email can't be empty");
+                return;
+            }
+            if (!password || !confirmPassword) {
+                setError("passwords can't be empty");
+                return;
+            }
+            if (password !== confirmPassword) {
+                setError("passwords don't match");
+                return;
+            }
         }
         const response = await fetch(`http://localhost:8000/auth`, {
             method: 'POST',
@@ -43,6 +55,7 @@ const Auth = () => {
             setCookie('Email', data.email, { 'maxAge': 600 });
             setCookie('AuthToken', data.token, { 'maxAge': 600 });
             window.location.reload();
+            setError(null);
         }
     }
 
