@@ -1,3 +1,5 @@
 .plans-container{
+    display: block;
     color: rgb(150, 120, 120);
+    width: 100%;
 }

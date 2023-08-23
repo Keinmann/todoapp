@@ -1,21 +1,25 @@
-.menu-container {   
-    position: sticky;
-    top: 0px;
+.plansheader-container {
+    width: 100%;
     display: flex;
-    margin: 0px auto 10px auto;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
     color: rgb(160, 150, 150);
-    text-transform: uppercase;
+    margin-bottom: 10px;
     background-color: rgba(130, 130, 130, 0.1);
-    backdrop-filter: blur(1px);
-    
+    justify-content: space-between;
 }
-.menu-option {
+
+.plansheader-container p{
+    justify-self: center;
+    text-transform: uppercase;
+    margin: 10px;
+}
+
+.plansheader-button{ 
+    position: relative;
+    right: 0px;
     margin: 0 1px;
     border: none;
-    width: 150px;
+    width: 80px;
     height: 40px;
     background-color: rgba(130, 130, 130, 0.1);
     color:inherit;
@@ -25,22 +29,17 @@
     -moz-transition: background-color 0.1s ease-out;
     -o-transition: background-color 0.1s ease-out;
     transition: background-color 0.1s ease-out;
+    text-transform: uppercase;
 }
-.menu-option:hover{
+
+.plansheader-button:hover{
     background-color: rgba(130, 130, 130, 0.3);
     border: 1px solid rgba(218, 218, 218, 0.9);
     outline: none;
 }
 
-.menu-logo{
+.plansheader-button-menu{
     display: block;
-    padding: 10px;
-    background-color: rgba(130, 130, 130, 0.3);
-    height: 100%;
+    width: 100%;
 }
 
-.logout{
-    width: 80px;
-    text-align: center;
-    align-items: center;
-}
