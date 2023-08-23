@@ -38,7 +38,8 @@ const Auth = () => {
         console.log(data);
         if (data.detail) {
             setError(data.detail);
-        } else {
+        }
+        if (data.email && data.token) {
             setCookie('Email', data.email, { 'maxAge': 600 });
             setCookie('AuthToken', data.token, { 'maxAge': 600 });
             window.location.reload();

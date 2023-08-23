@@ -32,7 +32,7 @@ app.post('/auth', async (req, res) => {
             res.json({ email, token });
         } catch (error) {
             console.log(error);
-            res.json({ 'detail': 'error' });
+            res.json({ 'detail': error.detail });
         }
     }
     if (endpoint === 'signin') {
@@ -48,6 +48,7 @@ app.post('/auth', async (req, res) => {
             }
         } catch (error) {
             console.log(error);
+            res.json({ 'detail': error.detail });
         }
     }
 });
