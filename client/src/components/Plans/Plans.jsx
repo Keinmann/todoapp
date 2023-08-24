@@ -1,17 +1,19 @@
 import './Plans.style.css';
 import { useCookies } from 'react-cookie';
-import PlansHeader from '../PlansHeader/PlansHeader';
-import PlansItem from '../PlansItem/PlansItem';
+import PlansHeader from './PlansHeader/PlansHeader';
+import PlansItem from './PlansItem/PlansItem';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
 const Plans = () => {
-    const [cookies, ,] = useCookies(null);
+    const [cookies, , removeCookie] = useCookies(null);
     const [plans, setPlans] = useState(null);
 
     const getData = async () => {
         try {
+            const authToken = cookies["AuthToken"];
             const userEmail = cookies["Email"];
+            if (!userEmail || !authToken) { removeCookie("AuthToken"); removeCookie("Email"); window.location.reload(); return; }
             const response = await fetch(`http://localhost:8000/plans/${userEmail}`);
             const json = await response.json();
             setPlans(json);
