@@ -1,13 +1,8 @@
-import PropTypes from 'prop-types';
+import { ReactPropTypes } from 'react';
 import './Menu.style.css';
 import { useCookies } from 'react-cookie';
 
-Menu.propTypes = {
-    setShowPlans: PropTypes.func,
-    setShowDreams: PropTypes.func,
-    setShowNotes: PropTypes.func,
-    setShowStarMap: PropTypes.func
-};
+Menu.propTypes = ReactPropTypes;
 
 function Menu({ setShowPlans, setShowDreams, setShowNotes, setShowStarMap }) {
 

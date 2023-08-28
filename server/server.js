@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//plans GET ALL
 app.get('/plans/:userEmail', async (req, res) => {
     const userEmail = req.params.userEmail;
     try {
@@ -20,7 +21,41 @@ app.get('/plans/:userEmail', async (req, res) => {
     }
 });
 
-//login & register
+//plans CREATE
+app.post('/plans', async (req, res) => {
+    const { user_email, title, description, date, progress } = req.body;
+    try {
+        const postPlan = await db.query('INSERT INTO plans(user_email, title, description, date, progress) VALUES($1, $2, $3, $4, $5)', [user_email, title, description, date, progress]);
+        res.json(postPlan);
+    } catch (error) {
+        console.log(res.json(error.detail));
+    }
+});
+//plans DELETE
+app.delete('/plans', async (req, res) => {
+    const { id } = req.body;
+    try {
+        const deletePlan = await db.query('DELETE FROM plans WHERE id = $1', [id]);
+        res.json(deletePlan);
+    } catch (error) {
+        console.log(error.detail);
+        res.json(error.detail);
+    }
+});
+//plans EDIT
+app.put('/plans/:id', async (req, res) => {
+    const { id } = req.params;
+    const { user_email, title, description, date, progress } = req.body;
+    try {
+        const putPlan = await db.query('UPDATE plans SET title = $1, description = $2, date = $3, progress = $4 WHERE id = $5', [title, description, date, progress, id]);
+        res.json(deletePlan);
+    } catch (error) {
+        console.log(error.detail);
+        res.json(error.detail);
+    }
+});
+
+//auth LOGIN & REGISTER
 app.post('/auth', async (req, res) => {
     const { endpoint, email, password } = req.body;
     const salt = bcrypt.genSaltSync(10);

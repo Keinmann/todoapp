@@ -1,7 +1,17 @@
 import './PlansItem.style.css';
 import PropTypes from 'prop-types';
+import { ReactPropTypes } from 'react';
 
 const PlansItem = (props) => {
+
+    const deleteItem = async () => {
+        console.log("deleting", plan);
+    };
+
+    const editItem = async () => {
+        console.log("editing", plan);
+    };
+
     const { plan, getData } = props;
     return (
         <div className='plansitem-wrapper' >
@@ -10,16 +20,17 @@ const PlansItem = (props) => {
                 <p className='info-date'>{plan.date}</p>
             </div>
             <div className='button-box'>
-                <button className='edit'>edit</button>
-                <button className='delete'>delete</button>
+                <button className='edit' onClick={editItem}>edit</button>
+                <button className='delete' onClick={deleteItem}>delete</button>
             </div>
         </div>
     );
 };
 
-PlansItem.propTypes = {
-    plan: PropTypes.object,
-    getData: PropTypes.func
-}
+PlansItem.propTypes = ReactPropTypes;
+// {
+//     plan: ReactPropTypes,
+//     getData: ReactPropTypes
+// }
 
 export default PlansItem;
