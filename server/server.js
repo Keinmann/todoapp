@@ -47,9 +47,8 @@ app.put('/plans/:id', async (req, res) => {
     const { title, date, progress } = req.body;
     try {
         console.log("editing ", title, progress, date, id);
-        const putPlan = await db.query('UPDATE plans SET title = $1, progress = $2, date = $3 WHERE id = $4', [title, progress, date, id]);
-        console.log(putPlan);
-        res.json("putPlan", putPlan);
+        const editPlan = await db.query('UPDATE plans SET title = $1, progress = $2, date = $3 WHERE id = $4', [title, progress, date, id]);
+        res.json(editPlan);
     } catch (error) {
         console.log(error.detail);
         res.json(error.detail);
