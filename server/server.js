@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-//plans GET ALL
+//plans GET
 app.get('/plans/:userEmail', async (req, res) => {
     const userEmail = req.params.userEmail;
     try {

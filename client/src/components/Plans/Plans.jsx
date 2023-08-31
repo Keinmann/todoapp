@@ -15,7 +15,6 @@ const Plans = () => {
             const userEmail = cookies["Email"];
             if (!userEmail || !authToken) { removeCookie("AuthToken"); removeCookie("Email"); window.location.reload(); return; }
             const response = await fetch(`http://localhost:8000/plans/${userEmail}`, {
-
             });
             const json = await response.json();
             setPlans(json);

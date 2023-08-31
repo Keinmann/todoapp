@@ -4,13 +4,12 @@ import { useCookies } from 'react-cookie';
 
 Menu.propTypes = ReactPropTypes;
 
-function Menu({ setShowPlans, setShowDreams, setShowNotes, setShowStarMap }) {
+function Menu({ setShowPlans, setShowNotes, setShowStarMap }) {
 
-    const [, , removeCookie] = useCookies(null);
+    const [cookie, , removeCookie] = useCookies(null);
 
     const resetContent = () => {
         setShowPlans(false);
-        setShowDreams(false);
         setShowNotes(false);
         setShowStarMap(false);
     };
@@ -24,14 +23,11 @@ function Menu({ setShowPlans, setShowDreams, setShowNotes, setShowStarMap }) {
     return (
         <div className='menu-container'>
             <div className='menu-logo'>
-                logo
+                {cookie["Email"]}
             </div>
             <div className='menu-button-box'>
                 <button className='menu-option' onClick={() => { resetContent(); setShowPlans(true); }}>
                     plans
-                </button>
-                <button className='menu-option' onClick={() => { resetContent(); setShowDreams(true); }}>
-                    dreams
                 </button>
                 <button className='menu-option' onClick={() => { resetContent(); setShowNotes(true); }}>
                     notes
@@ -42,7 +38,9 @@ function Menu({ setShowPlans, setShowDreams, setShowNotes, setShowStarMap }) {
 
             </div>
             <div className='menu-button-box'>
-                <button className='menu-option logout' onClick={logOut}>Log out</button>
+                <button className='menu-option logout' onClick={logOut}>
+                    Log out
+                </button>
             </div>
 
         </div>

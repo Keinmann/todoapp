@@ -1,8 +1,12 @@
 import './PlansItem.style.css';
-import PropTypes from 'prop-types';
 import { ReactPropTypes } from 'react';
+import { useState } from 'react';
+
+
 
 const PlansItem = (props) => {
+
+    const [showModal, setShowModal] = useState(false);
 
     const deleteItem = async () => {
         console.log("deleting", plan);
@@ -10,6 +14,8 @@ const PlansItem = (props) => {
 
     const editItem = async () => {
         console.log("editing", plan);
+
+        console.log(new Date())
     };
 
     const { plan, getData } = props;
@@ -26,11 +32,8 @@ const PlansItem = (props) => {
         </div>
     );
 };
-
 PlansItem.propTypes = ReactPropTypes;
-// {
-//     plan: ReactPropTypes,
-//     getData: ReactPropTypes
-// }
+
+
 
 export default PlansItem;
