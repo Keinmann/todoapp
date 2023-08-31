@@ -1,37 +1,43 @@
 import './PlansItem.style.css';
 import { ReactPropTypes } from 'react';
 import { useState } from 'react';
+import PlansModal from '../PlansModal/PlansModal';
 
 
 
-const PlansItem = (props) => {
+const PlansItem = ({ plan, getData }) => {
 
     const [showModal, setShowModal] = useState(false);
 
     const deleteItem = async () => {
-        console.log("deleting", plan);
+        try {
+            const response = await fetch(`http://localhost:8000/plans/${plan.id}`, {
+                method: "DELETE"
+            });
+            const json = await response.json();
+            if (json.status === 200) {
+                await getData();
+            }
+        } catch (err) {
+            console.error(err);
+        }
     };
 
-    const editItem = async () => {
-        console.log("editing", plan);
-
-        console.log(new Date())
-    };
-
-    const { plan, getData } = props;
     return (
-        <div className='plansitem-wrapper' >
+        <li className='plansitem-wrapper' >
             <div className='info-box'>
                 <p className='info-title'>{plan.title}</p>
                 <p className='info-date'>{plan.date}</p>
             </div>
             <div className='button-box'>
-                <button className='edit' onClick={editItem}>edit</button>
+                <button className='edit' onClick={() => { setShowModal(true) }}>edit</button>
                 <button className='delete' onClick={deleteItem}>delete</button>
             </div>
-        </div>
+            {showModal && <PlansModal mode={'edit'} setShowModal={setShowModal} getData={getData} plan={plan} />}
+        </li>
     );
 };
+
 PlansItem.propTypes = ReactPropTypes;
 
 

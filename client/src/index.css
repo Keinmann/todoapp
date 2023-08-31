@@ -13,7 +13,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
     overflow: hidden;
-    animation: mist 200s infinite linear;
+    animation: mist 300s infinite linear;
     background-repeat: round;
 }
 

@@ -1,13 +1,13 @@
 import './PlansModal.style.css';
 import { useState } from 'react';
 import { ReactPropTypes } from 'react';
+import { useCookies } from 'react-cookie';
 
 const PlansModal = ({ mode, setShowModal, getData, plan }) => {
-
     const editMode = mode === "edit" ? true : false;
-
+    const [cookies, , removeCookies] = useCookies(null);
     const [data, setData] = useState({
-        user_email: editMode ? plan.user_email : 'keinmann@mail.ru',
+        user_email: editMode ? plan.user_email : cookies["Email"],
         title: editMode ? plan.title : "",
         progress: editMode ? plan.progress : 0,
         date: editMode ? plan.date.replace('T', ' ').replace('Z', '') : new Date().toJSON().replace('T', ' ').replace('Z', '')
@@ -22,7 +22,6 @@ const PlansModal = ({ mode, setShowModal, getData, plan }) => {
                 body: JSON.stringify(data)
             });
             if (response.status === 200) {
-                console.log("created");
                 setShowModal(false);
                 getData();
             }
@@ -32,6 +31,7 @@ const PlansModal = ({ mode, setShowModal, getData, plan }) => {
     }
 
     async function putData(e) {
+        console.log("editing", JSON.stringify(data));
         e.preventDefault();
         try {
             const response = await fetch(`http://localhost:8000/plans/${plan.id}`, {
@@ -67,6 +67,7 @@ const PlansModal = ({ mode, setShowModal, getData, plan }) => {
                 </div>
                 <form action="">
                     <input
+                        className='modal-input'
                         required
                         maxLength={30}
                         placeholder="Your plan goes here"
@@ -75,8 +76,9 @@ const PlansModal = ({ mode, setShowModal, getData, plan }) => {
                         onChange={handleChange}
                     />
                     <br />
-                    <label htmlFor="">Drag to select your current progress</label>
+                    <label>Drag to select your current progress</label>
                     <input
+                        className='modal-input input-range'
                         required
                         type="range"
                         id="range"
@@ -85,7 +87,7 @@ const PlansModal = ({ mode, setShowModal, getData, plan }) => {
                         name="progress"
                         value={data.progress}
                         onChange={handleChange} />
-                    <input type="submit" className={mode} onClick={editMode ? putData : postData} />
+                    <input type="submit" className="input-submit" onClick={editMode ? putData : postData} />
                 </form>
             </div>
         </div>

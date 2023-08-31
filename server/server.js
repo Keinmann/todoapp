@@ -4,7 +4,6 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const db = require('./db');
-
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -25,15 +24,15 @@ app.get('/plans/:userEmail', async (req, res) => {
 app.post('/plans', async (req, res) => {
     const { user_email, title, description, date, progress } = req.body;
     try {
-        const postPlan = await db.query('INSERT INTO plans(user_email, title, description, date, progress) VALUES($1, $2, $3, $4, $5)', [user_email, title, description, date, progress]);
+        const postPlan = await db.query('INSERT INTO plans(user_email, title, date, progress) VALUES($1, $2, $3, $4)', [user_email, title, date, progress]);
         res.json(postPlan);
     } catch (error) {
         console.log(res.json(error.detail));
     }
 });
 //plans DELETE
-app.delete('/plans', async (req, res) => {
-    const { id } = req.body;
+app.delete('/plans/:id', async (req, res) => {
+    const { id } = req.params;
     try {
         const deletePlan = await db.query('DELETE FROM plans WHERE id = $1', [id]);
         res.json(deletePlan);
@@ -45,10 +44,12 @@ app.delete('/plans', async (req, res) => {
 //plans EDIT
 app.put('/plans/:id', async (req, res) => {
     const { id } = req.params;
-    const { user_email, title, description, date, progress } = req.body;
+    const { title, date, progress } = req.body;
     try {
-        const putPlan = await db.query('UPDATE plans SET title = $1, description = $2, date = $3, progress = $4 WHERE id = $5', [title, description, date, progress, id]);
-        res.json(deletePlan);
+        console.log("editing ", title, progress, date, id);
+        const putPlan = await db.query('UPDATE plans SET title = $1, progress = $2, date = $3 WHERE id = $4', [title, progress, date, id]);
+        console.log(putPlan);
+        res.json("putPlan", putPlan);
     } catch (error) {
         console.log(error.detail);
         res.json(error.detail);
@@ -60,15 +61,12 @@ app.post('/auth', async (req, res) => {
     const { endpoint, email, password } = req.body;
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
-    console.log(endpoint);
     if (endpoint === 'signup') {
         try {
             const signUp = await db.query('INSERT INTO users(email, hashed_password) VALUES($1, $2)', [email, hashedPassword]);
-            console.log(signUp);
             const token = jwt.sign({ email }, 'secret', { expiresIn: '1hr' });
             res.json({ email, token });
         } catch (error) {
-            console.log(error);
             if (error.code === '23505') {
                 res.json({ 'detail': 'email already in use' });
                 return;
@@ -84,7 +82,6 @@ app.post('/auth', async (req, res) => {
         try {
             const signIn = await db.query('SELECT hashed_password FROM users WHERE email = $1', [email]);
             const comparison = await bcrypt.compareSync(password, signIn.rows[0].hashed_password);
-            console.log("comparison", comparison);
             const token = jwt.sign({ email }, 'secret', { expiresIn: '1hr' });
             if (comparison) {
                 res.json({ email, token });

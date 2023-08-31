@@ -9,6 +9,9 @@ function Menu({ setShowPlans, setShowNotes, setShowStarMap }) {
     const [cookie, , removeCookie] = useCookies(null);
 
     const resetContent = () => {
+        if (cookie["Email"] === '' || cookie["AuthToken"] === '') {
+            window.location.reaload();
+        }
         setShowPlans(false);
         setShowNotes(false);
         setShowStarMap(false);
