@@ -22,8 +22,8 @@ const PlansModal = ({ mode, setShowModal, getData, plan }) => {
                 body: JSON.stringify(data)
             });
             if (response.status === 200) {
-                setShowModal(false);
                 getData();
+                setShowModal(false);
             }
         } catch (err) {
             console.log(err);
@@ -31,7 +31,6 @@ const PlansModal = ({ mode, setShowModal, getData, plan }) => {
     }
 
     async function putData(e) {
-        console.log("editing", JSON.stringify(data));
         e.preventDefault();
         try {
             const response = await fetch(`http://localhost:8000/plans/${plan.id}`, {

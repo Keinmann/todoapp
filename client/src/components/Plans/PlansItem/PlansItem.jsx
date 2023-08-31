@@ -1,6 +1,7 @@
 import './PlansItem.style.css';
 import { ReactPropTypes } from 'react';
 import { useState } from 'react';
+import dateFormat from 'dateformat';
 import PlansModal from '../PlansModal/PlansModal';
 
 
@@ -8,7 +9,6 @@ import PlansModal from '../PlansModal/PlansModal';
 const PlansItem = ({ plan, getData }) => {
 
     const [showModal, setShowModal] = useState(false);
-
     const deleteItem = async () => {
         try {
             const response = await fetch(`http://localhost:8000/plans/${plan.id}`, {
@@ -27,7 +27,7 @@ const PlansItem = ({ plan, getData }) => {
         <li className='plansitem-wrapper' >
             <div className='info-box'>
                 <p className='info-title'>{plan.title}</p>
-                <p className='info-date'>{plan.date}</p>
+                <p className='info-date'>{dateFormat(plan.date, 'dd.mm.yyyy')}</p>
             </div>
             <div className='button-box'>
                 <button className='edit' onClick={() => { setShowModal(true) }}>edit</button>
