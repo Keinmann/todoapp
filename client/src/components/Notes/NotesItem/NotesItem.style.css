@@ -1,0 +1,53 @@
+.notes-item{
+    width: 18%;
+    background-color: rgba(130, 130, 130, 0.2);
+    backdrop-filter: blur(1px);
+    padding: 5px;
+    border-radius: 3px;
+    margin: 0px 5px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+.notes-item-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.notes-item-title{
+    font-size: 17px;
+    display: flex;
+    flex-direction: row;
+}
+.notes-item-button-box{
+    display: flex;
+    flex-direction: row;
+}
+.notes-item-button-box svg{
+    fill: rgb(130, 130, 130);
+    width: 17px;
+    height: 17px;
+    margin: auto;
+}
+.notes-item-edit{
+    background-color: rgba(0,0,0,0);
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    width: 21px;
+    height: 21px;
+    display: flex;
+    transition: background-color 0.3s ease-in-out;
+    justify-content: center;
+}
+.notes-item-edit:hover{
+    background-color: rgba(130, 130, 130, 0.3);
+}
+
+.notes-item-content{
+    font-size: 14px;
+    overflow: auto;
+}
+
+.notes-item-date{
+    font-size: 12px;
+}

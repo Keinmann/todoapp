@@ -2,6 +2,7 @@ import './Main.style.css'
 import Menu from '../Menu/Menu';
 import { useState } from 'react';
 import Plans from '../Plans/Plans'
+import Notes from '../Notes/Notes';
 
 
 
@@ -15,7 +16,7 @@ const Main = () => {
             <Menu setShowPlans={setShowPlans} setShowNotes={setShowNotes} setShowStarMap={setShowStarMap} />
             <div className='main-content'>
                 {showPlans && <Plans />}
-                {showNotes && <>Notes</>}
+                {showNotes && <Notes />}
                 {showStarMap && <>StarMap</>}
             </div>
         </div>

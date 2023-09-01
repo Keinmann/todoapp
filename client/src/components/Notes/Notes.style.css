@@ -1,0 +1,12 @@
+.notes-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.notes-content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    -ms-flex-wrap: wrap;
+    justify-content: space-between;
+}

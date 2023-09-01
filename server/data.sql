@@ -1,4 +1,4 @@
-CREATE TABLE plans (
+CREATE TABLE IF NOT EXISTS plans (
     id SERIAL PRIMARY KEY,
     user_email VARCHAR(255),
     title VARCHAR(255),
@@ -6,3 +6,19 @@ CREATE TABLE plans (
     date VARCHAR(100)
 );
 
+CREATE TABLE IF NOT EXISTS users  (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255),
+    hashed_password VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS notes (
+    id SERIAL PRIMARY KEY,
+    user_email VARCHAR(255),
+    title VARCHAR(255),
+    content TEXT,
+    date VARCHAR(255)
+);
+
+-- INSERT INTO notes(user_email, title, content, date) VALUES ('keinmann@mail.ru', 'first note!', 'This is my first note. I just need an example', now());
+-- tati.baranowa@mail.ru

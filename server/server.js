@@ -19,7 +19,6 @@ app.get('/plans/:userEmail', async (req, res) => {
         res.json(error.detail);
     }
 });
-
 //plans CREATE
 app.post('/plans', async (req, res) => {
     const { user_email, title, description, date, progress } = req.body;
@@ -51,6 +50,17 @@ app.put('/plans/:id', async (req, res) => {
         res.json(editPlan);
     } catch (error) {
         console.log(error.detail);
+        res.json(error.detail);
+    }
+});
+//notes GET
+app.get('/notes/:userEmail', async (req, res) => {
+    const userEmail = req.params.userEmail;
+    try {
+        const notes = await db.query('SELECT * FROM notes WHERE user_email = $1', [userEmail]);
+        res.json(notes.rows);
+    } catch (error) {
+        console.log(error);
         res.json(error.detail);
     }
 });
