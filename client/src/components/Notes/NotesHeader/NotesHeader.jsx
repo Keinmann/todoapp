@@ -1,15 +1,20 @@
 import './NotesHeader.style.css';
 import { ReactPropTypes } from "react";
+import { useState } from 'react';
+import NotesModal from '../NotesModal/NotesModal';
 
-const NotesHeader = () => {
+
+const NotesHeader = ({ getData }) => {
+
+    const [showModal, setShowModal] = useState(false);
+
     return (
         <div className='notes-header'>
-            <p>
-                MY NOTES
-            </p>
-            <button>
+            <p>MY NOTES</p>
+            <button onClick={() => { setShowModal(true) }}>
                 ADD
             </button>
+            {showModal && <NotesModal mode={'create'} setShowModal={setShowModal} getData={getData} />}
         </div>
     );
 };
