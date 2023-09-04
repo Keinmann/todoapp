@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//PLANS
 //plans GET
 app.get('/plans/:userEmail', async (req, res) => {
     const userEmail = req.params.userEmail;
@@ -21,7 +22,7 @@ app.get('/plans/:userEmail', async (req, res) => {
 });
 //plans CREATE
 app.post('/plans', async (req, res) => {
-    const { user_email, title, description, date, progress } = req.body;
+    const { user_email, title, date, progress } = req.body;
     try {
         const postPlan = await db.query('INSERT INTO plans(user_email, title, date, progress) VALUES($1, $2, $3, $4)', [user_email, title, date, progress]);
         res.json(postPlan);
@@ -53,6 +54,9 @@ app.put('/plans/:id', async (req, res) => {
         res.json(error.detail);
     }
 });
+
+
+//NOTES
 //notes GET
 app.get('/notes/:userEmail', async (req, res) => {
     const userEmail = req.params.userEmail;
@@ -64,6 +68,42 @@ app.get('/notes/:userEmail', async (req, res) => {
         res.json(error.detail);
     }
 });
+//notes CREATE
+app.post('/notes', async (req, res) => {
+    const { user_email, title, content, date } = req.body;
+    try {
+        const postNote = await db.query('INSERT INTO notes(user_email, title, content, date ) VALUES($1, $2, $3, $4)', [user_email, title, content, date]);
+        res.json(postNote);
+    } catch (error) {
+        console.log(error.detail);
+        res.json(error.detail);
+    }
+});
+//notes EDIT
+app.put('/notes/:id', async (req, res) => {
+    const { id } = req.params;
+    const { title, date, content } = req.body;
+    try {
+        const editNote = await db.query('UPDATE notes SET title = $1, content = $2, date = $3 WHERE id = $4', [title, content, date, id]);
+        res.json(editNote);
+    } catch (error) {
+        console.log(error.detail);
+        res.json(error.detail);
+    }
+});
+//notes DELETE
+app.delete('/notes/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteNote = await db.query('DELETE FROM notes WHERE id = $1', [id]);
+        res.json(deleteNote);
+    } catch (error) {
+        console.log(error.detail);
+        res.json(error.detail);
+    }
+});
+
+
 
 //auth LOGIN & REGISTER
 app.post('/auth', async (req, res) => {

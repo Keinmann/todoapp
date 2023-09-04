@@ -8,8 +8,18 @@ const NotesItem = ({ note, getData }) => {
 
     const [showModal, setShowModal] = useState(null);
 
-    const deleteItem = () => {
-        console.log('deleting', note);
+    const deleteItem = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/notes/${note.id}`, {
+                method: "DELETE"
+            });
+            const json = await response.json();
+            if (json.status === 200) {
+                await getData();
+            }
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return (
