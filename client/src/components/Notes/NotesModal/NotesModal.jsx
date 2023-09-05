@@ -15,7 +15,6 @@ const NotesModal = ({ mode, setShowModal, getData, note }) => {
     });
 
     async function postData(e) {
-        console.log(data);
         e.preventDefault();
         try {
             const response = await fetch('http://localhost:8000/notes', {

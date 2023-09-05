@@ -20,5 +20,23 @@ CREATE TABLE IF NOT EXISTS notes (
     date VARCHAR(255)
 );
 
+CREATE TABLE IF NOT EXISTS stars (
+    id SERIAL PRIMARY KEY, 
+    user_email VARCHAR(255),
+    family INT,
+    job INT,
+    capitalization INT,
+    competence INT, 
+    finances INT, 
+    cultural INT,
+    hobby INT, 
+    rest INT,
+    beauty INT, 
+    health INT, 
+    voluntary INT, 
+    friends INT, 
+    date VARCHAR(255)
+);
+
 -- INSERT INTO notes(user_email, title, content, date) VALUES ('keinmann@mail.ru', 'first note!', 'This is my first note. I just need an example', now());
 -- tati.baranowa@mail.ru

@@ -103,8 +103,6 @@ app.delete('/notes/:id', async (req, res) => {
     }
 });
 
-
-
 //auth LOGIN & REGISTER
 app.post('/auth', async (req, res) => {
     const { endpoint, email, password } = req.body;
