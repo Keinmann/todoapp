@@ -1,4 +1,6 @@
 .notes-item{
+    display: flex;
+    flex-direction: column;
     width: 20%;
     background-color: rgba(130, 130, 130, 0.2);
     padding: 5px;
@@ -6,21 +8,17 @@
     margin: 0px 5px;
 }
 .notes-item-footer{
-    position: relative;
-    bottom: 0px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    justify-self: baseline;
+    justify-self: end; 
 }
-
 .notes-item-footer p{
     margin: 0px;
     text-align: center;
     align-items: center;
     line-height: 21px;
 }
-
 .notes-item-title{
     font-size: 17px;
     font-weight: 600;
@@ -39,7 +37,6 @@
     height: 17px;
     margin: auto;
 }
-
 .notes-item-button-box button {
     background-color: rgba(0,0,0,0);
     margin: 0px;
@@ -61,14 +58,14 @@
     outline: none;
 }
 .notes-item-delete:hover svg{
-    fill: rgba(250 , 10, 10, 0.2);
+    fill: rgba(250 , 10, 10, 0.1);
 }
 .notes-item-edit:hover svg{
-    fill: rgba(10, 255, 10, 0.5);
+    fill: rgb(10, 255, 10);
 }
 .notes-item-content{
     font-size: 17px;
-    overflow: auto;
+    height: 80%;
 }
 
 .notes-item-date{

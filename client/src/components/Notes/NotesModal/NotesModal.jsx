@@ -1,4 +1,3 @@
-import './NotesModal.style.css';
 import { ReactPropTypes } from 'react';
 import { useCookies } from 'react-cookie';
 import { useState } from 'react';
@@ -70,13 +69,14 @@ const NotesModal = ({ mode, setShowModal, getData, note }) => {
                         className='modal-input'
                         required
                         maxLength={30}
-                        placeholder="Your note goes here"
+                        placeholder="Give your note a name"
                         name="title"
                         value={data.title}
                         onChange={handleChange}
                     />
                     <br />
                     <textarea
+                        placeholder='Describe your note'
                         wrap='soft'
                         maxLength={300}
                         required

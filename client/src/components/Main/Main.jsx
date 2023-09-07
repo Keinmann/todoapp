@@ -3,6 +3,7 @@ import Menu from '../Menu/Menu';
 import { useState } from 'react';
 import Plans from '../Plans/Plans'
 import Notes from '../Notes/Notes';
+import StarMap from '../StarMap/StarMap';
 
 
 
@@ -17,7 +18,7 @@ const Main = () => {
             <div className='main-content'>
                 {showPlans && <Plans />}
                 {showNotes && <Notes />}
-                {showStarMap && <>StarMap</>}
+                {showStarMap && <StarMap />}
             </div>
         </div>
     );

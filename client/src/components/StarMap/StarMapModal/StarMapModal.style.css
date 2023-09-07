@@ -1,0 +1,8 @@
+.starmap-container input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 7px;
+    border-radius: 10px;
+    background: #ddd;
+    outline: none;
+}

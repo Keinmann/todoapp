@@ -9,7 +9,7 @@ const NotesHeader = ({ getData }) => {
     const [showModal, setShowModal] = useState(false);
 
     return (
-        <div className='notes-header'>
+        <div className='notesheader-container'>
             <p>MY NOTES</p>
             <button onClick={() => { setShowModal(true) }}>
                 ADD

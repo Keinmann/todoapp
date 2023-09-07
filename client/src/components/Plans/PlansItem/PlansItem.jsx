@@ -27,7 +27,7 @@ const PlansItem = ({ plan, getData }) => {
         <li className='plansitem-wrapper' >
             <div className='info-box'>
                 <p className='info-title'>{plan.title}</p>
-                <p className='info-date'>{dateFormat(plan.date, 'dd.mm.yyyy')}</p>
+                <p className='info-date'>{dateFormat(plan.date, 'dd.mm.yyyy hh:MM')}</p>
             </div>
             <div className='button-box'>
                 <button className='edit' onClick={() => { setShowModal(true) }}>edit</button>

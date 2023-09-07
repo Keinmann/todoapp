@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 
 const PlansModal = ({ mode, setShowModal, getData, plan }) => {
     const editMode = mode === "edit" ? true : false;
-    const [cookies, , removeCookies] = useCookies(null);
+    const [cookies, ,] = useCookies(null);
     const [data, setData] = useState({
         user_email: editMode ? plan.user_email : cookies["Email"],
         title: editMode ? plan.title : "",
@@ -68,7 +68,7 @@ const PlansModal = ({ mode, setShowModal, getData, plan }) => {
                     <input
                         className='modal-input'
                         required
-                        maxLength={30}
+                        maxLength={60}
                         placeholder="Your plan goes here"
                         name="title"
                         value={data.title}
