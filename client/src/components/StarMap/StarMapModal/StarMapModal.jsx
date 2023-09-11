@@ -3,8 +3,8 @@ import { ReactPropTypes } from 'react';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 
-function StarMapModal({ setShowModal, getData }) {
-    const [cookies, ,] = useCookies(null);
+const StarMapModal = ({ setShowModal, getData }) => {
+    const [cookies, setCookie, removeCookie] = useCookies(null);
 
     const [data, setData] = useState({
         user_email: cookies["Email"],
@@ -25,8 +25,10 @@ function StarMapModal({ setShowModal, getData }) {
 
     async function postData(e) {
         e.preventDefault();
+
         try {
-            const response = await fetch('http://localhost:8000/plans', {
+            // console.log("creating", data);
+            const response = await fetch('http://localhost:8000/stars', {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
@@ -42,7 +44,6 @@ function StarMapModal({ setShowModal, getData }) {
 
     const handleChange = (obj) => {
         const { name, value } = obj.target;
-
         setData(data => ({
             ...data,
             [name]: value
@@ -112,7 +113,7 @@ function StarMapModal({ setShowModal, getData }) {
             </div>
         </div>
     );
-}
+};
 
 StarMapModal.propTypes = ReactPropTypes;
 

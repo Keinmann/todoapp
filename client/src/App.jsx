@@ -8,11 +8,8 @@ function App() {
 
   return (
     <div className="app-container">
-      {cookies['AuthToken'] &&
-        <Main />}
-      {!cookies['AuthToken'] &&
-        <Auth />
-      }
+      {cookies['AuthToken'] && <Main />}
+      {!cookies['AuthToken'] && <Auth />}
 
     </div>
   );

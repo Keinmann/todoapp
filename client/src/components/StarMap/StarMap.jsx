@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 
 import StarMapHeader from './StarMapHeader/StarMapHeader';
+import StarImage from './StarImage/StarImage';
 
 function StarMap() {
 
@@ -34,7 +35,11 @@ function StarMap() {
 
     return (
         <div className='starmap-container'>
-            <StarMapHeader />
+            <StarMapHeader getData={getData} />
+            <div className='starmap-content'>
+                Content
+                {sortedStars?.map((star) => <StarImage key={star.id} star={star} />)}
+            </div>
         </div>
     );
 }

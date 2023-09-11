@@ -103,6 +103,30 @@ app.delete('/notes/:id', async (req, res) => {
     }
 });
 
+//stars GET
+app.get('/stars/:userEmail', async (req, res) => {
+    const userEmail = req.params.userEmail;
+    try {
+        const stars = await db.query('SELECT * FROM stars WHERE user_email = $1', [userEmail]);
+        res.json(stars.rows);
+    } catch (error) {
+        console.log(error);
+        res.json(error.detail);
+    }
+});
+//stars CREATE
+app.post('/stars', async (req, res) => {
+    const { user_email, family, job, implementation, study, money, soul, hobby, rest, image, health, help, friends, date } = req.body;
+    console.log("creating ", user_email, family, job, implementation, study, money, soul, hobby, rest, image, health, help, friends, date);
+    try {
+        const postStar = await db.query('INSERT INTO stars( user_email , family , job , implementation , study , money , soul , hobby , rest , image , health , help, friends , date ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)', [user_email, family, job, implementation, study, money, soul, hobby, rest, image, health, help, friends, date]);
+        res.json(postStar);
+    } catch (error) {
+        console.log(error.detail);
+        res.json(error.detail);
+    }
+});
+
 
 
 //auth LOGIN & REGISTER

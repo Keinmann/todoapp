@@ -8,13 +8,13 @@
     justify-content: space-between;
 }
 
-.notes-header p{
+.notesheader-container p{
     justify-self: center;
     text-transform: uppercase;
     margin: 10px;
 }
 
-.notes-header button{ 
+.notesheader-container button{ 
     font-size: inherit;
     position: relative;
     right: 0px;
@@ -33,7 +33,7 @@
     text-transform: uppercase;
 }
 
-.notes-header button:hover{
+.notesheader-container button:hover{
     background-color: rgba(130, 130, 130, 0.3);
     border: 1px solid rgba(218, 218, 218, 0.9);
     outline: none;

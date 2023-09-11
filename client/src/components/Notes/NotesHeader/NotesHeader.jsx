@@ -11,7 +11,7 @@ const NotesHeader = ({ getData }) => {
     return (
         <div className='notesheader-container'>
             <p>MY NOTES</p>
-            <button onClick={() => { setShowModal(true) }}>
+            <button className='notesheader-button' onClick={() => { setShowModal(true) }}>
                 ADD
             </button>
             {showModal && <NotesModal mode={'create'} setShowModal={setShowModal} getData={getData} />}
