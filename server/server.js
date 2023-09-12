@@ -103,11 +103,12 @@ app.delete('/notes/:id', async (req, res) => {
     }
 });
 
+//STARS
 //stars GET
 app.get('/stars/:userEmail', async (req, res) => {
     const userEmail = req.params.userEmail;
     try {
-        const stars = await db.query('SELECT * FROM stars WHERE user_email = $1', [userEmail]);
+        const stars = await db.query('SELECT id, family, job, implementation, study, money, soul, hobby, rest, image, health, help, friends, date FROM stars WHERE user_email = $1', [userEmail]);
         res.json(stars.rows);
     } catch (error) {
         console.log(error);
@@ -126,8 +127,17 @@ app.post('/stars', async (req, res) => {
         res.json(error.detail);
     }
 });
-
-
+//stars DELETE
+app.delete('/stars/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteStar = await db.query('DELETE FROM stars WHERE id = $1', [id]);
+        res.json(deleteStar);
+    } catch (error) {
+        console.log(error.detail);
+        res.json(error.detail);
+    }
+});
 
 //auth LOGIN & REGISTER
 app.post('/auth', async (req, res) => {

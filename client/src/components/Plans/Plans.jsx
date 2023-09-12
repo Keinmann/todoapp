@@ -27,7 +27,7 @@ const Plans = () => {
         }
     };
 
-    useEffect(() => { getData(); });
+    useEffect(() => getData, []);
 
     const sortedPlans = plans?.sort((a, b) => new Date(a.date) - new Date(b.date));
 

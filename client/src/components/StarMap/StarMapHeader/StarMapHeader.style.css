@@ -32,9 +32,3 @@
     transition: background-color 0.1s ease-out;
     text-transform: uppercase;
 }
-
-.starmapheader-container button:hover{
-    background-color: rgba(130, 130, 130, 0.3);
-    border: 1px solid rgba(218, 218, 218, 0.9);
-    outline: none;
-}

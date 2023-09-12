@@ -14,7 +14,6 @@ function StarMapHeader({ getData }) {
             </button>
             {showModal && <StarMapModal getData={getData} setShowModal={setShowModal} />}
         </div>
-
     );
 }
 

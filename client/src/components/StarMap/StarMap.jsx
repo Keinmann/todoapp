@@ -28,17 +28,18 @@ function StarMap() {
             console.log(error);
         }
     };
-
-    useEffect(() => { getData(); });
+    useEffect(() => getData, []);
 
     const sortedStars = stars?.sort((a, b) => new Date(a.date) - new Date(b.date));
 
     return (
+
         <div className='starmap-container'>
             <StarMapHeader getData={getData} />
             <div className='starmap-content'>
-                Content
-                {sortedStars?.map((star) => <StarImage key={star.id} star={star} />)}
+                <div className='starmap-list'>
+                    {sortedStars?.map((star) => <StarImage key={star.id} star={star} width="200px" height="200px" />)}
+                </div>
             </div>
         </div>
     );
