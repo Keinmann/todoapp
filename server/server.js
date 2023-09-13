@@ -11,6 +11,7 @@ app.use(express.json());
 //PLANS
 //plans GET
 app.get('/plans/:userEmail', async (req, res) => {
+    // console.log("get plans");
     const userEmail = req.params.userEmail;
     try {
         const plans = await db.query('SELECT * FROM plans WHERE user_email = $1', [userEmail]);
@@ -59,6 +60,7 @@ app.put('/plans/:id', async (req, res) => {
 //NOTES
 //notes GET
 app.get('/notes/:userEmail', async (req, res) => {
+    // console.log("get notes");
     const userEmail = req.params.userEmail;
     try {
         const notes = await db.query('SELECT * FROM notes WHERE user_email = $1', [userEmail]);
@@ -106,6 +108,7 @@ app.delete('/notes/:id', async (req, res) => {
 //STARS
 //stars GET
 app.get('/stars/:userEmail', async (req, res) => {
+    // console.log("get stars");
     const userEmail = req.params.userEmail;
     try {
         const stars = await db.query('SELECT id, family, job, implementation, study, money, soul, hobby, rest, image, health, help, friends, date FROM stars WHERE user_email = $1', [userEmail]);

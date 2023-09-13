@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 
 import StarMapHeader from './StarMapHeader/StarMapHeader';
-import StarImage from './StarImage/StarImage';
+import StarMapListItem from './StarMapListItem/StarMapListItem';
 
 function StarMap() {
 
@@ -30,15 +30,14 @@ function StarMap() {
     };
     useEffect(() => getData, []);
 
-    const sortedStars = stars?.sort((a, b) => new Date(a.date) - new Date(b.date));
+    const sortedStars = stars?.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     return (
-
         <div className='starmap-container'>
             <StarMapHeader getData={getData} />
             <div className='starmap-content'>
                 <div className='starmap-list'>
-                    {sortedStars?.map((star) => <StarImage key={star.id} star={star} width="200px" height="200px" />)}
+                    {sortedStars?.map((star, index) => <StarMapListItem key={star.id} star={star} shadow={sortedStars[index + 1]} getData={getData} />)}
                 </div>
             </div>
         </div>

@@ -1,0 +1,10 @@
+.starmap-listitem-container{
+    position: relative;
+}
+
+.shadow{
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: -1;
+}
