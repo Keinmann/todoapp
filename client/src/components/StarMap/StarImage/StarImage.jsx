@@ -1,14 +1,14 @@
 import { ReactPropTypes } from "react";
 
-const StarImage = ({ star, width, height, color = "rgb(130, 130, 130)", isShadow = false }) => {
+const StarImage = ({ star, width, height, color = "rgb(130, 130, 130)", isShadow = false, enableAxis = false }) => {
     const toRad = (degree) => {
         return degree * Math.PI / 180;
     }
 
-    const getCX = (degree, value) => {
+    const getCX = (degree, value = 100) => {
         return 100 + Math.sin(toRad(degree)) * value;
     };
-    const getCY = (degree, value) => {
+    const getCY = (degree, value = 100) => {
         return 100 + Math.cos(toRad(degree)) * value;
     };
 
@@ -67,18 +67,33 @@ const StarImage = ({ star, width, height, color = "rgb(130, 130, 130)", isShadow
             <line x1={cx11} y1={cy11} x2={cx12} y2={cy12} />
             <line x1={cx12} y1={cy12} x2={cx1} y2={cy1} />
 
+            {enableAxis &&
+                <>
+                    <line x1={100} y1={100} x2={getCX(180)} y2={getCY(180)} />
+                    <line x1={100} y1={100} x2={getCX(150)} y2={getCY(150)} />
+                    <line x1={100} y1={100} x2={getCX(120)} y2={getCY(120)} />
+                    <line x1={100} y1={100} x2={getCX(90)} y2={getCY(90)} />
+                    <line x1={100} y1={100} x2={getCX(60)} y2={getCY(60)} />
+                    <line x1={100} y1={100} x2={getCX(30)} y2={getCY(30)} />
+                    <line x1={100} y1={100} x2={getCX(0)} y2={getCY(0)} />
+                    <line x1={100} y1={100} x2={getCX(-30)} y2={getCY(-30)} />
+                    <line x1={100} y1={100} x2={getCX(-60)} y2={getCY(-60)} />
+                    <line x1={100} y1={100} x2={getCX(-90)} y2={getCY(-90)} />
+                    <line x1={100} y1={100} x2={getCX(-120)} y2={getCY(-120)} />
+                    <line x1={100} y1={100} x2={getCX(-150)} y2={getCY(-150)} />
+                </>}
             {/* <text x={cx1} y={cy1} strokeWidth={0.01} fontSize={5}>family {star.family}</text>
-            <text x={cx2} y={cy2} strokeWidth={0.01} fontSize={5}>job {star.job}</text>
-            <text x={cx3} y={cy3} strokeWidth={0.01} fontSize={5}>implementation {star.implementation}</text>
-            <text x={cx4} y={cy4} strokeWidth={0.01} fontSize={5}>study {star.study}</text>
-            <text x={cx5} y={cy5} strokeWidth={0.01} fontSize={5}>money {star.money}</text>
-            <text x={cx6} y={cy6} strokeWidth={0.01} fontSize={5}>soul {star.soul}</text>
-            <text x={cx7} y={cy7} strokeWidth={0.01} fontSize={5}>hobby {star.hobby}</text>
-            <text x={cx8} y={cy8} strokeWidth={0.01} fontSize={5}>rest {star.rest}</text>
-            <text x={cx9} y={cy9} strokeWidth={0.01} fontSize={5}>image {star.image}</text>
-            <text x={cx10} y={cy10} strokeWidth={0.01} fontSize={5}>health {star.health}</text>
-            <text x={cx11} y={cy11} strokeWidth={0.01} fontSize={5}>help {star.help}</text>
-            <text x={cx12} y={cy12} strokeWidth={0.01} fontSize={5}>friends {star.friends}</text> */}
+                 <text x={cx2} y={cy2} strokeWidth={0.01} fontSize={5}>job {star.job}</text>
+                 <text x={cx3} y={cy3} strokeWidth={0.01} fontSize={5}>implementation {star.implementation}</text>
+                 <text x={cx4} y={cy4} strokeWidth={0.01} fontSize={5}>study {star.study}</text>
+                 <text x={cx5} y={cy5} strokeWidth={0.01} fontSize={5}>money {star.money}</text>
+                 <text x={cx6} y={cy6} strokeWidth={0.01} fontSize={5}>soul {star.soul}</text>
+                 <text x={cx7} y={cy7} strokeWidth={0.01} fontSize={5}>hobby {star.hobby}</text>
+                 <text x={cx8} y={cy8} strokeWidth={0.01} fontSize={5}>rest {star.rest}</text>
+                 <text x={cx9} y={cy9} strokeWidth={0.01} fontSize={5}>image {star.image}</text>
+                 <text x={cx10} y={cy10} strokeWidth={0.01} fontSize={5}>health {star.health}</text>
+                 <text x={cx11} y={cy11} strokeWidth={0.01} fontSize={5}>help {star.help}</text>
+                 <text x={cx12} y={cy12} strokeWidth={0.01} fontSize={5}>friends {star.friends}</text> */}
         </svg>
     );
 };

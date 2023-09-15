@@ -10,7 +10,7 @@ const NotesModal = ({ mode, setShowModal, getData, note }) => {
         user_email: editMode ? note.user_email : cookies["Email"],
         title: editMode ? note.title : "",
         content: editMode ? note.content : '',
-        date: editMode ? note.date.replace('T', ' ').replace('Z', '') : new Date().toJSON().replace('T', ' ').replace('Z', '')
+        date: editMode ? note.date : new Date().toJSON()
     });
 
     async function postData(e) {

@@ -20,7 +20,7 @@ const StarMapModal = ({ setShowModal, getData }) => {
         health: 0,
         help: 0,
         friends: 0,
-        date: new Date().toJSON().replace('T', ' ').replace('Z', '')
+        date: new Date().toJSON()
     });
 
     async function postData(e) {

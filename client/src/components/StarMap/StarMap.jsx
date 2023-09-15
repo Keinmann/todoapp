@@ -28,7 +28,15 @@ function StarMap() {
             console.log(error);
         }
     };
+
     useEffect(() => getData, []);
+
+    const scrollOnWheel = (event) => {
+        event.currentTarget.scrollBy({
+            left: event.deltaY * 1.5,
+            behavior: "smooth"
+        });
+    };
 
     const sortedStars = stars?.sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -36,7 +44,7 @@ function StarMap() {
         <div className='starmap-container'>
             <StarMapHeader getData={getData} />
             <div className='starmap-content'>
-                <div className='starmap-list'>
+                <div className='starmap-list' onWheel={scrollOnWheel}>
                     {sortedStars?.map((star, index) => <StarMapListItem key={star.id} star={star} shadow={sortedStars[index + 1]} getData={getData} />)}
                 </div>
             </div>

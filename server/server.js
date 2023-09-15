@@ -11,7 +11,7 @@ app.use(express.json());
 //PLANS
 //plans GET
 app.get('/plans/:userEmail', async (req, res) => {
-    // console.log("get plans");
+    console.log("get plans");
     const userEmail = req.params.userEmail;
     try {
         const plans = await db.query('SELECT * FROM plans WHERE user_email = $1', [userEmail]);
@@ -36,7 +36,7 @@ app.delete('/plans/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const deletePlan = await db.query('DELETE FROM plans WHERE id = $1', [id]);
-        res.json(deletePlan);
+        res.json({ 'status': 200 });
     } catch (error) {
         console.log(error.detail);
         res.json(error.detail);
@@ -60,7 +60,7 @@ app.put('/plans/:id', async (req, res) => {
 //NOTES
 //notes GET
 app.get('/notes/:userEmail', async (req, res) => {
-    // console.log("get notes");
+    console.log("get notes");
     const userEmail = req.params.userEmail;
     try {
         const notes = await db.query('SELECT * FROM notes WHERE user_email = $1', [userEmail]);
@@ -98,7 +98,7 @@ app.delete('/notes/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const deleteNote = await db.query('DELETE FROM notes WHERE id = $1', [id]);
-        res.json(deleteNote);
+        res.json({ 'status': 200 });
     } catch (error) {
         console.log(error.detail);
         res.json(error.detail);
@@ -108,7 +108,7 @@ app.delete('/notes/:id', async (req, res) => {
 //STARS
 //stars GET
 app.get('/stars/:userEmail', async (req, res) => {
-    // console.log("get stars");
+    console.log("get stars");
     const userEmail = req.params.userEmail;
     try {
         const stars = await db.query('SELECT id, family, job, implementation, study, money, soul, hobby, rest, image, health, help, friends, date FROM stars WHERE user_email = $1', [userEmail]);
@@ -121,7 +121,6 @@ app.get('/stars/:userEmail', async (req, res) => {
 //stars CREATE
 app.post('/stars', async (req, res) => {
     const { user_email, family, job, implementation, study, money, soul, hobby, rest, image, health, help, friends, date } = req.body;
-    console.log("creating ", user_email, family, job, implementation, study, money, soul, hobby, rest, image, health, help, friends, date);
     try {
         const postStar = await db.query('INSERT INTO stars( user_email , family , job , implementation , study , money , soul , hobby , rest , image , health , help, friends , date ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)', [user_email, family, job, implementation, study, money, soul, hobby, rest, image, health, help, friends, date]);
         res.json(postStar);
@@ -134,8 +133,9 @@ app.post('/stars', async (req, res) => {
 app.delete('/stars/:id', async (req, res) => {
     try {
         const { id } = req.params;
+        console.log("star delete", id);
         const deleteStar = await db.query('DELETE FROM stars WHERE id = $1', [id]);
-        res.json(deleteStar);
+        res.json({ 'status': 200 });
     } catch (error) {
         console.log(error.detail);
         res.json(error.detail);

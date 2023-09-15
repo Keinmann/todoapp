@@ -1,4 +1,15 @@
 .starmap-listitem-container{
+    display: flex;
+    flex-direction: column;
+    margin: 3px;
+    transition: background-color 0.5s ease;
+}
+
+.starmap-listitem-container:hover{
+    background-color: rgba(130, 130, 130, 0.1);
+}
+
+.starmap-listitem-image-box{
     position: relative;
 }
 
@@ -7,4 +18,41 @@
     top:0;
     left: 0;
     z-index: -1;
+}
+
+.starmap-listitem-menu{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px 10px;
+}
+.starmap-listitem-menu p {
+    margin: auto;
+}
+
+.starmap-listitem-delete{
+    background-color: rgba(0,0,0,0);
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    width: 21px;
+    height: 21px;
+    display: flex;
+    -webkit-transition: background-color 0.1s ease-out;
+    -moz-transition: background-color 0.1s ease-out;
+    -o-transition: background-color 0.1s ease-out;
+    transition: background-color 0.1s ease-out;
+    -webkit-transition: fill 0.1s ease-out;
+    -moz-transition: fill 0.1s ease-out;
+    -o-transition: fill 0.1s ease-out;
+    transition: fill 0.1s ease-out;
+    justify-content: center;
+    border: 1px solid rgba(0,0,0,0);
+    fill: rgba(130, 130, 130, 0.5);
+}
+
+.starmap-listitem-delete:hover{
+    fill: rgba(255, 30, 30, 0.5);
+    border: 1px solid rgba(130,130,130,0.5);     
 }
