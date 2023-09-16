@@ -5,12 +5,12 @@ import { useCookies } from 'react-cookie';
 
 import StarMapHeader from './StarMapHeader/StarMapHeader';
 import StarMapListItem from './StarMapListItem/StarMapListItem';
+import StarMapDetail from './StarMapDetail/StarMapDetail';
 
 function StarMap() {
 
     const [cookies, , removeCookie] = useCookies(null);
-    const [stars, setStars] = useState(null);
-
+    const [sortedStars, setSortedStars] = useState(null);
     const getData = async () => {
         try {
             const authToken = cookies["AuthToken"];
@@ -23,7 +23,7 @@ function StarMap() {
             }
             const response = await fetch(`http://localhost:8000/stars/${userEmail}`);
             const json = await response.json();
-            setStars(json);
+            setSortedStars(json?.sort((a, b) => new Date(b.date) - new Date(a.date)));
         } catch (error) {
             console.log(error);
         }
@@ -38,8 +38,6 @@ function StarMap() {
         });
     };
 
-    const sortedStars = stars?.sort((a, b) => new Date(b.date) - new Date(a.date));
-
     return (
         <div className='starmap-container'>
             <StarMapHeader getData={getData} />
@@ -47,6 +45,7 @@ function StarMap() {
                 <div className='starmap-list' onWheel={scrollOnWheel}>
                     {sortedStars?.map((star, index) => <StarMapListItem key={star.id} star={star} shadow={sortedStars[index + 1]} getData={getData} />)}
                 </div>
+                <StarMapDetail />
             </div>
         </div>
     );

@@ -1,0 +1,10 @@
+.starmap-detail{
+    display: flex;
+    flex-direction: row;
+}
+.starmap-detail-image{
+width: 50%;
+}
+.starmap-detail-info{
+
+}
