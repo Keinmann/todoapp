@@ -11,6 +11,8 @@ function StarMap() {
 
     const [cookies, , removeCookie] = useCookies(null);
     const [sortedStars, setSortedStars] = useState(null);
+    const [targetStar, setTargetStar] = useState(null);
+    const [targetShadow, setTargetShadow] = useState(null);
     const getData = async () => {
         try {
             const authToken = cookies["AuthToken"];
@@ -43,9 +45,9 @@ function StarMap() {
             <StarMapHeader getData={getData} />
             <div className='starmap-content'>
                 <div className='starmap-list' onWheel={scrollOnWheel}>
-                    {sortedStars?.map((star, index) => <StarMapListItem key={star.id} star={star} shadow={sortedStars[index + 1]} getData={getData} />)}
+                    {sortedStars?.map((star, index) => <StarMapListItem key={star.id} star={star} shadow={sortedStars[index + 1]} getData={getData} setTargetStar={setTargetStar} setTargetShadow={setTargetShadow} />)}
                 </div>
-                <StarMapDetail />
+                <StarMapDetail star={targetStar} shadow={targetShadow} />
             </div>
         </div>
     );

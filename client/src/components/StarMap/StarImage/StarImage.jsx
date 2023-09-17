@@ -41,6 +41,21 @@ const StarImage = ({ star, width, height, color = "rgb(130, 130, 130)", isShadow
     // |   31   |  52 |       42       |  48   |  39   |  30  |   66  |  54  |   62  |   43   |  64  |   58    |
     return (
         <svg className={isShadow ? "shadow" : ""} viewBox="0 0 200 200" fill={color !== '' ? color : "rgb(130, 130, 130)"} stroke={color !== '' ? color : "rgb(130, 130, 130)"} width={width} height={height}>
+            {enableAxis &&
+                <>
+                    <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(180)} y2={getCY(180)} />
+                    <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(150)} y2={getCY(150)} />
+                    <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(120)} y2={getCY(120)} />
+                    <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(90)} y2={getCY(90)} />
+                    <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(60)} y2={getCY(60)} />
+                    <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(30)} y2={getCY(30)} />
+                    <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(0)} y2={getCY(0)} />
+                    <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(-30)} y2={getCY(-30)} />
+                    <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(-60)} y2={getCY(-60)} />
+                    <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(-90)} y2={getCY(-90)} />
+                    <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(-120)} y2={getCY(-120)} />
+                    <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(-150)} y2={getCY(-150)} />
+                </>}
             <circle cx={cx1} cy={cy1} r="1px" />
             <circle cx={cx2} cy={cy2} r="1px" />
             <circle cx={cx3} cy={cy3} r="1px" />
@@ -67,21 +82,7 @@ const StarImage = ({ star, width, height, color = "rgb(130, 130, 130)", isShadow
             <line x1={cx11} y1={cy11} x2={cx12} y2={cy12} />
             <line x1={cx12} y1={cy12} x2={cx1} y2={cy1} />
 
-            {enableAxis &&
-                <>
-                    <line x1={100} y1={100} x2={getCX(180)} y2={getCY(180)} />
-                    <line x1={100} y1={100} x2={getCX(150)} y2={getCY(150)} />
-                    <line x1={100} y1={100} x2={getCX(120)} y2={getCY(120)} />
-                    <line x1={100} y1={100} x2={getCX(90)} y2={getCY(90)} />
-                    <line x1={100} y1={100} x2={getCX(60)} y2={getCY(60)} />
-                    <line x1={100} y1={100} x2={getCX(30)} y2={getCY(30)} />
-                    <line x1={100} y1={100} x2={getCX(0)} y2={getCY(0)} />
-                    <line x1={100} y1={100} x2={getCX(-30)} y2={getCY(-30)} />
-                    <line x1={100} y1={100} x2={getCX(-60)} y2={getCY(-60)} />
-                    <line x1={100} y1={100} x2={getCX(-90)} y2={getCY(-90)} />
-                    <line x1={100} y1={100} x2={getCX(-120)} y2={getCY(-120)} />
-                    <line x1={100} y1={100} x2={getCX(-150)} y2={getCY(-150)} />
-                </>}
+
             {/* <text x={cx1} y={cy1} strokeWidth={0.01} fontSize={5}>family {star.family}</text>
                  <text x={cx2} y={cy2} strokeWidth={0.01} fontSize={5}>job {star.job}</text>
                  <text x={cx3} y={cy3} strokeWidth={0.01} fontSize={5}>implementation {star.implementation}</text>

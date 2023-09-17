@@ -1,10 +1,49 @@
+.starmap-list{
+    margin-bottom: 5px;    
+}
+
 .starmap-detail{
     display: flex;
     flex-direction: row;
 }
-.starmap-detail-image{
-width: 50%;
-}
-.starmap-detail-info{
 
+.starmap-detail-info{
+    width: 50%;
+    background-color: rgba(130, 130, 130, 0.3);
+    padding: 10px;
+}
+
+.starmap-detail-image{
+    position: relative;
+    width: 50%;
+    background-color: rgba(130, 130, 130, 0.1);
+}
+
+.shadow{
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: -1;
+}
+
+.starmap-info-titles{
+    width: 50%;
+    overflow: hidden;
+}
+
+
+.starmap table{
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.starmap-detail-info table th{
+    font-weight: 400;
+    text-align: left;
+}
+
+.starmap-detail-info table th:last-child{
+    font-weight: 400;
+    text-align: right;
 }

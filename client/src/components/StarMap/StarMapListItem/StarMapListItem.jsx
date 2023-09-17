@@ -4,15 +4,16 @@ import StarImage from '../StarImage/StarImage';
 import dateFormat from 'dateformat';
 
 
-const StarMapListItem = ({ star, shadow, getData }) => {
+const StarMapListItem = ({ star, shadow, getData, setTargetStar, setTargetShadow }) => {
 
     const deleteItem = async () => {
+        setTargetStar(null);
+        setTargetShadow(null);
         try {
             const response = await fetch(`http://localhost:8000/stars/${star.id}`, {
                 method: "DELETE"
             });
             const json = await response.json();
-            console.log(json);
             if (json.status === 200) {
                 await getData();
             }
@@ -23,7 +24,7 @@ const StarMapListItem = ({ star, shadow, getData }) => {
 
     return (
         <div className="starmap-listitem-container">
-            <div className="starmap-listitem-image-box">
+            <div className="starmap-listitem-image-box" onClick={() => { setTargetStar(star); setTargetShadow(shadow) }}>
                 <StarImage star={star} width="200px" height="200px" color="rgb(220, 200, 200)" />
                 {shadow && <StarImage star={shadow} width="200px" height="200px" color="rgb(100, 100, 100)" isShadow={true} />}
             </div>
