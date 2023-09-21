@@ -1,4 +1,4 @@
-.notesheader-container {
+.starmapheader-container {
     font-size: 17px;
     display: flex;
     flex-direction: row;
@@ -8,13 +8,13 @@
     justify-content: space-between;
 }
 
-.notesheader-container p{
+.starmapheader-container p{
     justify-self: center;
     text-transform: uppercase;
     margin: 10px;
 }
 
-.notesheader-container button{ 
+.starmapheader-container button{ 
     font-size: inherit;
     position: relative;
     right: 0px;
@@ -32,10 +32,3 @@
     transition: background-color 0.1s ease-out;
     text-transform: uppercase;
 }
-
-.notesheader-container button:hover{
-    background-color: rgba(130, 130, 130, 0.3);
-    border: 1px solid rgba(218, 218, 218, 0.9);
-    outline: none;
-}
-

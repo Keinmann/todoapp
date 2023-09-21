@@ -1,0 +1,23 @@
+.starmap-content {
+    /* background-color: rgba(130, 130, 130, 0.1); */
+    padding: 3px;
+}
+
+.starmap-list{
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    background-color: rgba(0, 0, 0, 0);
+}
+.starmap-list::-webkit-scrollbar{
+    background-color: rgba(0,0,0,0);
+    height: 10px;
+}
+.starmap-list::-webkit-scrollbar-thumb{
+    background-color: rgba(130,130,130,0.3);
+    border-radius: 5px;
+}
+.starmap-list::-webkit-scrollbar-thumb:hover{
+    background-color: rgba(130,130,130, 0.5);
+}
+

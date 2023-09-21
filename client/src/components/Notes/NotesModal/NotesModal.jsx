@@ -1,4 +1,3 @@
-import './NotesModal.style.css';
 import { ReactPropTypes } from 'react';
 import { useCookies } from 'react-cookie';
 import { useState } from 'react';
@@ -11,7 +10,7 @@ const NotesModal = ({ mode, setShowModal, getData, note }) => {
         user_email: editMode ? note.user_email : cookies["Email"],
         title: editMode ? note.title : "",
         content: editMode ? note.content : '',
-        date: editMode ? note.date.replace('T', ' ').replace('Z', '') : new Date().toJSON().replace('T', ' ').replace('Z', '')
+        date: editMode ? note.date : new Date().toJSON()
     });
 
     async function postData(e) {
@@ -69,13 +68,14 @@ const NotesModal = ({ mode, setShowModal, getData, note }) => {
                         className='modal-input'
                         required
                         maxLength={30}
-                        placeholder="Your note goes here"
+                        placeholder="Give your note a name"
                         name="title"
                         value={data.title}
                         onChange={handleChange}
                     />
                     <br />
                     <textarea
+                        placeholder='Describe your note'
                         wrap='soft'
                         maxLength={300}
                         required

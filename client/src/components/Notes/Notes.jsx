@@ -28,7 +28,7 @@ const Notes = () => {
         }
     };
 
-    useEffect(() => { getData(); });
+    useEffect(() => getData, []);
 
     const sortedNotes = notes?.sort((a, b) => new Date(a.date) - new Date(b.date));
 

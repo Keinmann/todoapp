@@ -33,7 +33,7 @@ const NotesItem = ({ note, getData }) => {
             </div>
             <div className='notes-item-footer'>
                 <p className='notes-item-date'>
-                    {dateFormat(note.date, 'dd.mm.yyyy')}
+                    {dateFormat(note.date, 'dd.mm.yyyy HH:MM')}
                 </p>
                 <div className='notes-item-button-box'>
                     <button className='notes-item-edit' onClick={() => { setShowModal(true) }}>
