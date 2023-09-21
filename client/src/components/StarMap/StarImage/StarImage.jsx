@@ -1,6 +1,10 @@
 import { ReactPropTypes } from "react";
+import { useEffect, useState } from "react";
 
-const StarImage = ({ star, width, height, color = "rgb(130, 130, 130)", isShadow = false, enableAxis = false, enableMetrics = false }) => {
+const StarImage = ({ star, width, height, color = "rgb(130, 130, 130)", isShadow = false, enableAxis = false, enableMetrics = false, isAtBackground = false }) => {
+    const [top, setTop] = useState(null);
+    const [left, setLeft] = useState(null);
+
     const toRad = (degree) => {
         return degree * Math.PI / 180;
     }
@@ -11,6 +15,14 @@ const StarImage = ({ star, width, height, color = "rgb(130, 130, 130)", isShadow
     const getCY = (degree, value = 100) => {
         return 100 + Math.cos(toRad(degree)) * value;
     };
+
+    function calculateOffsets() {
+        setTop(Math.random() * 80);
+        setLeft(Math.random() * 100);
+        console.log(top, left);
+    }
+
+    useEffect(() => calculateOffsets, []);
 
     const cx1 = getCX(180, star.family);
     const cy1 = getCY(180, star.family);
@@ -40,7 +52,18 @@ const StarImage = ({ star, width, height, color = "rgb(130, 130, 130)", isShadow
     // | family | job | implementation | study | money | soul | hobby | rest | image | health | help | friends | 
     // |   31   |  52 |       42       |  48   |  39   |  30  |   66  |  54  |   62  |   43   |  64  |   58    |
     return (
-        <svg className={isShadow ? "shadow" : ""} viewBox="0 0 200 200" fill={color !== '' ? color : "rgb(130, 130, 130)"} stroke={color !== '' ? color : "rgb(130, 130, 130)"} width={width} height={height}>
+        <svg
+            className={isShadow ? "shadow" : isAtBackground ? "star-background" : ""}
+            viewBox="0 0 200 200"
+            fill={color !== '' ? color : "rgb(140, 140, 140)"}
+            stroke={color !== '' ? color : "rgb(140, 140, 140)"}
+            width={width}
+            height={height}
+            style={{
+                top: isAtBackground ? top + "%" : '',
+                left: isAtBackground ? left + '%' : ''
+                // animation: '3s ease-in 1s infinite reverse both running slidein'
+            }}>
             {enableAxis &&
                 <>
                     <line stroke="rgba(130, 130, 130, 0.1)" x1={100} y1={100} x2={getCX(180)} y2={getCY(180)} />
@@ -81,23 +104,24 @@ const StarImage = ({ star, width, height, color = "rgb(130, 130, 130)", isShadow
             <line x1={cx10} y1={cy10} x2={cx11} y2={cy11} />
             <line x1={cx11} y1={cy11} x2={cx12} y2={cy12} />
             <line x1={cx12} y1={cy12} x2={cx1} y2={cy1} />
-            {enableMetrics && <>
-                <text x={star.family < 80 ? getCX(180, 90) : getCX(180, 70)} y={star.family < 80 ? getCY(180, 90) : getCY(180, 70)} strokeWidth={0.01} fontSize={5}>family {star.family}</text>
-                <text x={star.job < 80 ? getCX(150, 90) : getCX(150, 70)} y={star.family < 80 ? getCY(150, 90) : getCY(150, 70)} strokeWidth={0.01} fontSize={5}>job {star.job}</text>
-                <text x={cx3} y={cy3} strokeWidth={0.01} fontSize={5}>implementation {star.implementation}</text>
-                <text x={cx4} y={cy4} strokeWidth={0.01} fontSize={5}>study {star.study}</text>
-                <text x={cx5} y={cy5} strokeWidth={0.01} fontSize={5}>money {star.money}</text>
-                <text x={cx6} y={cy6} strokeWidth={0.01} fontSize={5}>soul {star.soul}</text>
-                <text x={cx7} y={cy7} strokeWidth={0.01} fontSize={5}>hobby {star.hobby}</text>
-                <text x={cx8} y={cy8} strokeWidth={0.01} fontSize={5}>rest {star.rest}</text>
-                <text x={cx9} y={cy9} strokeWidth={0.01} fontSize={5}>image {star.image}</text>
-                <text x={cx10} y={cy10} strokeWidth={0.01} fontSize={5}>health {star.health}</text>
-                <text x={cx11} y={cy11} strokeWidth={0.01} fontSize={5}>help {star.help}</text>
-                <text x={cx12} y={cy12} strokeWidth={0.01} fontSize={5}>friends {star.friends}</text>
-            </>
+            {
+                enableMetrics && <>
+                    <text x={star.family < 80 ? getCX(180, 90) : getCX(180, 70)} y={star.family < 80 ? getCY(180, 90) : getCY(180, 70)} strokeWidth={0.01} fontSize={5}>family {star.family}</text>
+                    <text x={star.job < 80 ? getCX(150, 90) : getCX(150, 70)} y={star.family < 80 ? getCY(150, 90) : getCY(150, 70)} strokeWidth={0.01} fontSize={5}>job {star.job}</text>
+                    <text x={cx3} y={cy3} strokeWidth={0.01} fontSize={5}>implementation {star.implementation}</text>
+                    <text x={cx4} y={cy4} strokeWidth={0.01} fontSize={5}>study {star.study}</text>
+                    <text x={cx5} y={cy5} strokeWidth={0.01} fontSize={5}>money {star.money}</text>
+                    <text x={cx6} y={cy6} strokeWidth={0.01} fontSize={5}>soul {star.soul}</text>
+                    <text x={cx7} y={cy7} strokeWidth={0.01} fontSize={5}>hobby {star.hobby}</text>
+                    <text x={cx8} y={cy8} strokeWidth={0.01} fontSize={5}>rest {star.rest}</text>
+                    <text x={cx9} y={cy9} strokeWidth={0.01} fontSize={5}>image {star.image}</text>
+                    <text x={cx10} y={cy10} strokeWidth={0.01} fontSize={5}>health {star.health}</text>
+                    <text x={cx11} y={cy11} strokeWidth={0.01} fontSize={5}>help {star.help}</text>
+                    <text x={cx12} y={cy12} strokeWidth={0.01} fontSize={5}>friends {star.friends}</text>
+                </>
             }
 
-        </svg>
+        </svg >
     );
 };
 

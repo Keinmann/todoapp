@@ -8,7 +8,7 @@
 }
 
 .starmap-detail-info{
-    width: 50%;
+    width: 55%;
     background-color: rgba(130, 130, 130, 0.3);
     display: flex;
     flex-direction: row;
@@ -16,7 +16,7 @@
 
 .starmap-detail-image{
     position: relative;
-    width: 50%;
+    width: 45%;
     background-color: rgba(130, 130, 130, 0.1);
 }
 

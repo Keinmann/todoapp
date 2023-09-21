@@ -1,37 +1,15 @@
 import './StarMap.style.css';
 
-import { useState, useEffect } from 'react';
-import { useCookies } from 'react-cookie';
+import { useState } from 'react';
+import { ReactPropTypes } from 'react';
 
 import StarMapHeader from './StarMapHeader/StarMapHeader';
 import StarMapListItem from './StarMapListItem/StarMapListItem';
 import StarMapDetail from './StarMapDetail/StarMapDetail';
 
-function StarMap() {
-
-    const [cookies, , removeCookie] = useCookies(null);
-    const [sortedStars, setSortedStars] = useState(null);
+function StarMap({ sortedStars, getData }) {
     const [targetStar, setTargetStar] = useState(null);
     const [targetShadow, setTargetShadow] = useState(null);
-    const getData = async () => {
-        try {
-            const authToken = cookies["AuthToken"];
-            const userEmail = cookies["Email"];
-            if (!userEmail || !authToken) {
-                removeCookie("AuthToken");
-                removeCookie("Email");
-                window.location.reload();
-                return;
-            }
-            const response = await fetch(`http://localhost:8000/stars/${userEmail}`);
-            const json = await response.json();
-            setSortedStars(json?.sort((a, b) => new Date(b.date) - new Date(a.date)));
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    useEffect(() => getData, []);
 
     const scrollOnWheel = (event) => {
         event.currentTarget.scrollBy({
@@ -50,7 +28,10 @@ function StarMap() {
                 <StarMapDetail star={targetStar} shadow={targetShadow} />
             </div>
         </div>
+
     );
 }
+
+StarMap.propTypes = ReactPropTypes;
 
 export default StarMap;
