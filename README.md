@@ -1,7 +1,7 @@
 # todoapp
 [SELF EDUCATION][MVP] ToDo App
 
-##FEATURES : 
+## FEATURES : 
 - authentication&registration    
 - notes
 - todos
@@ -17,18 +17,18 @@ Person estimates one's 12 spheres of life and gets to know better
 what one doesn't mention but need to in so that his life would achieve
 a better balance.
 
-##INSTALLATION :
+## INSTALLATION :
 - Install psql; 
 - Insert tables from ./server/data.sql into db;
 - Insert db and user data into ./server/.env;
-###From ./ :
+### From ./ :
 - npm install;
-###IN DIFFERENT TERMINAL WINDOWS:
+### IN DIFFERENT TERMINAL WINDOWS:
 ```
 npm run server;
 npm run client;
 ```
-##TODO:
+## TODO:
 - automated installation
 - refactor server api globals into .env
 - restyle todos a little bit
