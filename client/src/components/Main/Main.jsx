@@ -39,7 +39,7 @@ const Main = () => {
     return (
         <>
             <div className='main-background'>
-                {sortedStars?.map((star) => <StarImage color="rgba(130,130,130,0.6)" key={star.id} star={star} width="200px" height="200px" isAtBackground={true} />)}
+                {sortedStars?.map((star) => <StarImage color="rgba(130,130,130,0.5)" key={star.id} star={star} width="200px" height="200px" isAtBackground={true} />)}
             </div>
             <div className='main-container'>
                 <Menu setShowPlans={setShowPlans} setShowNotes={setShowNotes} setShowStarMap={setShowStarMap} />

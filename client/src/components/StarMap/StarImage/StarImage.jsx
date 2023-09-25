@@ -19,7 +19,6 @@ const StarImage = ({ star, width, height, color = "rgb(130, 130, 130)", isShadow
     function calculateOffsets() {
         setTop(Math.random() * 80);
         setLeft(Math.random() * 100);
-        console.log(top, left);
     }
 
     useEffect(() => calculateOffsets, []);

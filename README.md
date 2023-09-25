@@ -6,7 +6,6 @@ Features :
     -notes
     -todos
     -self-diagnostics
-    
     -dynamic procedured graphics
 
     This is a nicely - looking app for making one's life easier:
@@ -17,3 +16,19 @@ Features :
     Person estimates one's 12 spheres of life and gets to know better
     what one doesn't mention but need to in so that his life would achieve
     a better balance.
+
+INSTALLATION :
+        Install psql; 
+        Insert tables from ./server/data.sql into db;
+        Insert db and user data into ./server/.env;
+        From ./ :
+        npm install;
+        
+        IN DIFFERENT TERMINAL WINDOWS:
+        npm run server;
+        npm run client;
+
+    TODO:
+        -automated installation
+        -refactor server api globals into .env
+        -restyle todos a little bit
