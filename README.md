@@ -22,7 +22,9 @@ a better balance.
 - Insert tables from ./server/data.sql into db;
 - Insert db and user data into ./server/.env;
 ### From ./ :
-- npm install;
+```
+npm install;
+```
 ### IN DIFFERENT TERMINAL WINDOWS:
 ```
 npm run server;
