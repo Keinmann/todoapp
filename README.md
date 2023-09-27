@@ -1,5 +1,7 @@
 # todoapp
 [SELF EDUCATION][MVP] ToDo App
+###Stack
+ - React + Node js + PSQL
 
 ## FEATURES : 
 - authentication&registration    
