@@ -32,5 +32,6 @@ npm run client;
 ```
 ## TODO:
 - automated installation
+- routing in client api
 - refactor server api globals into .env
 - restyle todos a little bit
